@@ -249,6 +249,7 @@ export default function BoardGameRulesPage() {
   const [openSections, setOpenSections] = useState<Record<string, boolean>>(() =>
     Object.fromEntries(sections.map((section) => [section.id, true]))
   );
+  const [highlightedSection, setHighlightedSection] = useState<string | null>(null);
 
   useEffect(() => {
     setOpenSections(Object.fromEntries(sections.map((section) => [section.id, true])));
@@ -260,10 +261,15 @@ export default function BoardGameRulesPage() {
 
   const expandAndJump = (id: string) => {
     setOpenSections((prev) => ({ ...prev, [id]: true }));
+    setHighlightedSection(id);
     setTimeout(() => {
       const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.scrollY - 88;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
     }, 0);
+    window.setTimeout(() => setHighlightedSection((prev) => (prev === id ? null : prev)), 1800);
   };
 
   return (
@@ -272,7 +278,7 @@ export default function BoardGameRulesPage() {
         <aside className="hidden w-64 shrink-0 border-r border-zinc-800 p-4 lg:block">
           <div className="sticky top-4">
             <p className="mb-2 text-sm uppercase tracking-[0.25em] text-zinc-500">Rulebook</p>
-            <h1 className="mb-4 text-2xl font-bold">WWM GvG Board Game</h1>
+            <h1 className="mb-4 whitespace-nowrap text-[1.7rem] font-bold leading-tight">WWM GvG Board Game</h1>
             <nav className="space-y-2">
               {sections.map((s) => (
                 <button
@@ -292,7 +298,7 @@ export default function BoardGameRulesPage() {
           <div className="pointer-events-none fixed left-3 top-3 z-30 lg:hidden">
             <details className="pointer-events-auto relative">
               <summary className="cursor-pointer list-none rounded-2xl border border-zinc-800 bg-zinc-900/60 backdrop-blur-md px-4 py-3 font-semibold shadow-2xl shadow-black/30">☰ Sections</summary>
-              <div className="absolute left-0 z-20 mt-3 w-72 rounded-2xl border border-zinc-800 bg-zinc-900 p-3 shadow-2xl shadow-black/40">
+              <div className="absolute left-0 z-20 mt-3 max-h-[70vh] w-[min(18rem,calc(100vw-1.5rem))] overflow-y-auto rounded-2xl border border-zinc-800 bg-zinc-900 p-3 shadow-2xl shadow-black/40">
                 <div className="space-y-2">
                   {sections.map((s) => (
                     <button
@@ -320,8 +326,8 @@ export default function BoardGameRulesPage() {
             {sections.map((s) => {
               const isOpen = openSections[s.id];
               return (
-                <section key={s.id} id={s.id} className="scroll-mt-6">
-                  <div className="overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/60 shadow-xl shadow-black/10">
+                <section key={s.id} id={s.id} className="scroll-mt-24">
+                  <div className={`overflow-hidden rounded-3xl border bg-zinc-900/60 shadow-xl transition-all duration-500 ${highlightedSection === s.id ? "border-amber-300 shadow-[0_0_0_3px_rgba(252,211,77,0.25)] shadow-amber-200/10" : "border-zinc-800 shadow-black/10"}`}>
                     <button
                       type="button"
                       onClick={() => toggleSection(s.id)}
