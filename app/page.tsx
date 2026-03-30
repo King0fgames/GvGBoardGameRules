@@ -2,15 +2,25 @@
 
 import { useEffect, useMemo, useState } from "react";
 
+const R = (t: string) => <span className="rounded bg-red-500/10 px-1.5 py-0.5 text-red-300">{t}</span>;
+const B = (t: string) => <span className="rounded bg-blue-500/10 px-1.5 py-0.5 text-blue-300">{t}</span>;
+const N = (t: string) => <strong className="text-white">{t}</strong>;
+
+type Section = {
+  id: string;
+  title: string;
+  content: React.ReactNode;
+};
+
 export default function BoardGameRulesPage() {
-  const sections = useMemo(
+  const sections: Section[] = useMemo(
     () => [
       {
         id: "overview",
         title: "Game Overview",
         content: (
           <>
-            <p>5v5 team-based board game.</p>
+            <p>{N("5v5")} team-based board game.</p>
             <p>Each team selects a <strong>Team Captain</strong> who declares the end of the strategy phase and announces Command Skill usage.</p>
           </>
         ),
@@ -24,36 +34,37 @@ export default function BoardGameRulesPage() {
         id: "roles",
         title: "Roles",
         content: (
-          <div className="space-y-4">
+          <div className="space-y-5">
             <p>Each player selects one role for the match.</p>
-            <div>
-              <h3 className="font-semibold text-lg">DPS</h3>
+
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
+              <h3 className="text-lg font-semibold">🗡️ DPS</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>+2 to offensive rolls against players in open tiles.</li>
-                <li>+2 to offensive rolls when attacking Bulwarks or Fish.</li>
+                <li>{N("+2")} to {R("offensive")} rolls against players in open tiles.</li>
+                <li>{N("+2")} to {R("offensive")} rolls when attacking Bulwarks or Fish.</li>
               </ul>
             </div>
-            <div>
-              <h3 className="font-semibold text-lg">Tank</h3>
+
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
+              <h3 className="text-lg font-semibold">🛡️ Tank</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>+2 to defensive rolls when defending a Bulwark, Fish, or Tree.</li>
+                <li>{N("+2")} to {B("defensive")} rolls when defending a Bulwark, Fish, or Tree.</li>
               </ul>
             </div>
-            <div>
-              <h3 className="font-semibold text-lg">Healer</h3>
-              <p className="mt-2">On their action, a Healer may choose one:</p>
+
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
+              <h3 className="text-lg font-semibold">🍃 Healer</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6">
                 <li>
                   <strong>Buff</strong>
                   <ul className="mt-1 list-disc space-y-1 pl-6">
-                    <li>Add +2 to each allied player’s roll within 1 square.</li>
-                    <li>Applies to all affected allies.</li>
+                    <li>Add {N("+2")} to each allied player’s roll within {N("1")} square.</li>
                     <li>The Healer does not roll.</li>
                     <li>If not on the same tile, the Healer cannot be targeted or knocked down.</li>
                   </ul>
                 </li>
-                <li><strong>Revive:</strong> Revive all knocked-down allies within 1 square.</li>
-                <li><strong>Act Normally:</strong> Participate in combat by rolling 🎲.</li>
+                <li><strong>Revive:</strong> Revive allies within {N("1")} square.</li>
+                <li><strong>Act Normally:</strong> Roll 🎲.</li>
               </ul>
             </div>
           </div>
@@ -65,7 +76,7 @@ export default function BoardGameRulesPage() {
         content: (
           <ul className="list-disc space-y-1 pl-6">
             <li>Teams begin at their respective Base.</li>
-            <li>Players may exit from any of the 3 stair platforms.</li>
+            <li>Players may exit from any of the {N("3")} stair platforms.</li>
           </ul>
         ),
       },
@@ -82,25 +93,17 @@ export default function BoardGameRulesPage() {
       },
       {
         id: "combat",
-        title: "Combat System",
+        title: "Combat",
         content: (
           <div className="space-y-3">
             <p>Each tile resolves as a separate battle.</p>
-            <p>Combat uses <strong>sum vs. sum</strong>:</p>
             <ul className="list-disc space-y-1 pl-6">
-              <li>All attacking rolls and bonuses are combined.</li>
-              <li>All defending rolls and bonuses are combined.</li>
+              <li>{R("Attacking")} totals vs. {B("Defending")} totals.</li>
               <li>The higher total wins.</li>
+              <li><strong>Open Tile PvP tie:</strong> Stalemate.</li>
+              <li><strong>Structure PvE tie:</strong> Player win.</li>
+              <li><strong>Structure PvP tie:</strong> Structure win.</li>
             </ul>
-            <div>
-              <h3 className="text-lg font-semibold">Result</h3>
-              <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>The losing side’s players are knocked down.</li>
-                <li><strong>Open Tile PvP tie:</strong> Stalemate.</li>
-                <li><strong>Structure PvE tie:</strong> Player win.</li>
-                <li><strong>Structure PvP tie:</strong> Structure win.</li>
-              </ul>
-            </div>
           </div>
         ),
       },
@@ -118,77 +121,60 @@ export default function BoardGameRulesPage() {
               <ul className="mt-2 list-disc space-y-1 pl-6">
                 <li>If uncontested, the player gains the coin.</li>
                 <li>If contested, combat occurs. The winner gains the coin and the losers are knocked down.</li>
-                <li>Jungle coins respawn at Halftime (⏰ 30 turns).</li>
+                <li>Jungle coins respawn on Halftime, at ⏰ {N("Turn 30")}.</li>
               </ul>
             </div>
             <div>
               <h3 className="text-lg font-semibold">Defending Structures</h3>
-              <p>Players on a friendly structure roll and add their results to that structure’s defense.</p>
+              <p>Players on a {B("friendly")} structure roll and add their results to that structure’s defense.</p>
             </div>
             <div>
               <h3 className="text-lg font-semibold">Attacking Structures</h3>
-              <p>Players on an enemy structure contribute their rolls and bonuses to the attacking total.</p>
+              <p>Players on an {R("enemy")} structure contribute their rolls and bonuses to the attacking total.</p>
             </div>
           </div>
         ),
       },
       {
         id: "structures",
-        title: "Structures & Objectives",
+        title: "Structures",
         content: (
           <div className="space-y-6">
-            <div>
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">Bulwarks</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li><strong>HP:</strong> ♥♥♥ <span className="text-zinc-400">#3</span></li>
-                <li><strong>Defense:</strong> 🎲</li>
-                <li>
-                  <strong>Rules:</strong>
-                  <ul className="mt-1 list-disc space-y-1 pl-6">
-                    <li>Each successful attack removes 1 HP.</li>
-                    <li>At least 1 Bulwark must be destroyed before the Fish can be attacked.</li>
-                    <li>Each destroyed Bulwark lowers the Fish’s defense tier.</li>
-                  </ul>
-                </li>
-                <li>
-                  <strong>Combat outcomes:</strong>
-                  <ul className="mt-1 list-disc space-y-1 pl-6">
-                    <li>If defenders win, attackers are knocked down.</li>
-                    <li>If a defended Bulwark is destroyed, its defenders are knocked down.</li>
-                  </ul>
-                </li>
+                <li>HP: ♥♥♥ #{N("3")}</li>
+                <li>Defense: 🎲</li>
+                <li>Each {R("attack")} removes {N("1")} HP.</li>
+                <li>At least {N("1")} Bulwark must be destroyed before the Fish can be attacked.</li>
+                <li>If {B("defenders")} win, {R("attackers")} are knocked down.</li>
               </ul>
             </div>
-            <div>
+
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">Fish</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li><strong>HP:</strong> ♥♥♥♥♥♥ <span className="text-zinc-400">#6</span></li>
+                <li>HP: ♥♥♥♥♥♥ #{N("6")}</li>
                 <li>
-                  <strong>Defense by destroyed Bulwarks:</strong>
+                  Defense by destroyed Bulwarks:
                   <ul className="mt-1 list-disc space-y-1 pl-6">
-                    <li>1 Bulwark destroyed: 🎲 + 2</li>
-                    <li>2 Bulwarks destroyed: 🎲</li>
-                    <li>3 Bulwarks destroyed: 🎲 - 2</li>
+                    <li>{N("1")} Bulwark destroyed: 🎲 + {N("2")}</li>
+                    <li>{N("2")} Bulwarks destroyed: 🎲</li>
+                    <li>{N("3")} Bulwarks destroyed: 🎲 - {N("2")}</li>
                   </ul>
                 </li>
-                <li>Each successful attack removes 1 HP.</li>
-                <li>Once destroyed, the Tree becomes available.</li>
+                <li>Each {R("attack")} removes {N("1")} HP.</li>
               </ul>
             </div>
-            <div>
+
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">Tree</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6">
                 <li>A player may pick up the Tree as their action.</li>
                 <li>The Tree must be carried back to Base to win.</li>
-                <li>
-                  <strong>Tree Carrier Rules:</strong>
-                  <ul className="mt-1 list-disc space-y-1 pl-6">
-                    <li>Movement: 2 spaces per turn.</li>
-                    <li>If enemies are on the same tile at the start of the turn, the Tree Carrier moves 1 space instead.</li>
-                    <li>The Tree gives its carrier +2 to defensive rolls.</li>
-                    <li>If defeated, the carrier is knocked down.</li>
-                  </ul>
-                </li>
+                <li>Movement: {N("2")} spaces per turn.</li>
+                <li>If enemies are on the same tile at the start of the turn, the Tree Carrier moves {N("1")} space instead.</li>
+                <li>The Tree gives its carrier {N("+2")} to {B("defensive")} rolls.</li>
               </ul>
             </div>
           </div>
@@ -198,24 +184,12 @@ export default function BoardGameRulesPage() {
         id: "boss",
         title: "Boss",
         content: (
-          <div className="space-y-4">
-            <ul className="list-disc space-y-1 pl-6">
-              <li>The Boss spawns after ⏰ 15 turns and again at ⏰ 45 turns.</li>
-              <li><strong>Location:</strong> middle lane</li>
-              <li><strong>HP:</strong> ♥♥♥ <span className="text-zinc-400">#3</span></li>
-              <li><strong>Defense:</strong> 🎲</li>
-              <li><strong>Reward:</strong> 2 coins</li>
-            </ul>
-            <div>
-              <h3 className="text-lg font-semibold">Combat</h3>
-              <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>Each team rolls against the Boss, then PvP if applicable.</li>
-                <li>Successful rolls against the Boss reduce Boss HP.</li>
-                <li>Successful PvP combat rolls knock down the losers.</li>
-                <li>The team that lands the final blow gains the coins.</li>
-              </ul>
-            </div>
-          </div>
+          <ul className="list-disc space-y-1 pl-6">
+            <li>The Boss spawns on ⏰ {N("Turn 15")} and again on ⏰ {N("Turn 45")}.</li>
+            <li>HP: ♥♥♥ #{N("3")}</li>
+            <li>Defense: 🎲</li>
+            <li>Reward: {N("2")} coins.</li>
+          </ul>
         ),
       },
       {
@@ -233,22 +207,15 @@ export default function BoardGameRulesPage() {
             </div>
             <div>
               <h3 className="text-lg font-semibold">Command Skills</h3>
-              <p className="mb-2 text-zinc-400">Declared before movement. The Team Captain sends the choice to the game master. Each skill has a ⏰ 3-turn cooldown. Each skill lasts ⏰ 1 turn unless noted otherwise.</p>
+              <p className="mb-2 text-zinc-400">Declared before movement. The Team Captain sends the choice to the game master. Each skill has a ⏰ {N("3-turn")} cooldown. Each skill lasts ⏰ {N("1 turn")} unless noted otherwise.</p>
               <ul className="list-disc space-y-1 pl-6">
-                <li><strong>Player Speed — 1 coin:</strong> +3 to all player movement rolls.</li>
-                <li><strong>Healing Reduction — 1 coin:</strong> Negates all enemy healer bonuses.</li>
-                <li><strong>Bulwark Damage — 1 coin:</strong> +4 to total attack rolls against Bulwarks.</li>
-                <li><strong>Fish Damage — 1 coin:</strong> +4 to total attack rolls against Fish.</li>
-                <li><strong>City Protection — 2 coins:</strong> All attacks against Bulwarks and Fish are negated.</li>
-                <li><strong>Tree Speed — 2 coins:</strong> The Tree Carrier’s movement is doubled.</li>
-                <li>
-                  <strong>Ballista Charges — 1 coin:</strong>
-                  <ul className="mt-1 list-disc space-y-1 pl-6">
-                    <li>2 uses total and does not expire.</li>
-                    <li>Players starting at Base may teleport anywhere on the board.</li>
-                    <li>They cannot act that turn.</li>
-                  </ul>
-                </li>
+                <li><strong>Player Speed — {N("1 coin")}:</strong> {N("+3")} to all player movement rolls.</li>
+                <li><strong>Healing Reduction — {N("1 coin")}:</strong> Negates all enemy healer bonuses.</li>
+                <li><strong>Bulwark Damage — {N("1 coin")}:</strong> {N("+4")} to total {R("attack")} rolls against Bulwarks.</li>
+                <li><strong>Fish Damage — {N("1 coin")}:</strong> {N("+4")} to total {R("attack")} rolls against Fish.</li>
+                <li><strong>City Protection — {N("2 coins")}:</strong> All attacks against Bulwarks and Fish are negated.</li>
+                <li><strong>Tree Speed — {N("2 coins")}:</strong> The Tree Carrier’s movement is doubled.</li>
+                <li><strong>Ballista Charges — {N("1 coin")}:</strong> {N("2 uses")} total, does not expire, teleport from Base, and cannot act that turn.</li>
               </ul>
             </div>
           </div>
@@ -258,48 +225,28 @@ export default function BoardGameRulesPage() {
         id: "status-effects",
         title: "Status Effects",
         content: (
-          <div>
-            <h3 className="text-lg font-semibold">Knocked Down</h3>
-            <ul className="mt-2 list-disc space-y-1 pl-6">
-              <li>Occurs during the Action Phase only.</li>
-              <li>A knocked-down player skips their next turn’s movement and action.</li>
-              <li>During that skipped turn, they may be revived by a Healer.</li>
-              <li>If revived during that turn, they act normally on the following turn.</li>
-              <li>If not revived, they respawn at Base at the start of the turn after their skipped turn.</li>
-            </ul>
-          </div>
+          <ul className="list-disc space-y-1 pl-6">
+            <li>A knocked-down player skips their next turn’s movement and action.</li>
+            <li>If not revived, they respawn at Base on the following turn.</li>
+          </ul>
         ),
       },
       {
         id: "halftime",
-        title: "Halftime Event",
+        title: "Halftime",
         content: (
-          <div className="space-y-4">
-            <p>Halftime occurs after ⏰ 30 turns.</p>
-            <div>
-              <h3 className="text-lg font-semibold">Effects</h3>
-              <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>All Jungle coins respawn.</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold">Archery Duel</h3>
-              <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>Each team selects 1 player.</li>
-                <li>There are 5 targets.</li>
-                <li>Players alternate shots.</li>
-                <li>Closest to the bullseye scores 1 point.</li>
-                <li>The first player to reach 3 points wins 2 coins.</li>
-              </ul>
-            </div>
-          </div>
+          <ul className="list-disc space-y-1 pl-6">
+            <li>Halftime occurs on ⏰ {N("Turn 30")}.</li>
+            <li>All Jungle coins respawn.</li>
+            <li>Archery Duel reward: {N("2 coins")}.</li>
+          </ul>
         ),
       },
     ],
     []
   );
 
-  const [openSections, setOpenSections] = useState(() =>
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>(() =>
     Object.fromEntries(sections.map((section) => [section.id, true]))
   );
 
@@ -307,102 +254,86 @@ export default function BoardGameRulesPage() {
     setOpenSections(Object.fromEntries(sections.map((section) => [section.id, true])));
   }, [sections]);
 
-  const toggleSection = (id) => {
+  const toggleSection = (id: string) => {
     setOpenSections((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const expandAndJump = (id) => {
+  const expandAndJump = (id: string) => {
     setOpenSections((prev) => ({ ...prev, [id]: true }));
     setTimeout(() => {
       const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (el) el.scrollIntoView({ behavior: "smooth" });
     }, 0);
   };
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
       <div className="mx-auto flex max-w-7xl">
-        <aside className="sticky top-0 hidden h-screen w-72 shrink-0 border-r border-zinc-800 bg-zinc-950/95 px-6 py-8 lg:block">
-          <div className="mb-6">
-            <p className="text-sm uppercase tracking-[0.25em] text-zinc-500">Rulebook</p>
-            <h1 className="mt-2 text-2xl font-bold">Board Game Rules</h1>
+        <aside className="hidden w-64 shrink-0 border-r border-zinc-800 p-4 lg:block">
+          <div className="sticky top-4">
+            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-zinc-500">Rulebook</p>
+            <h1 className="mb-4 text-2xl font-bold">Board Game Rules</h1>
+            <nav className="space-y-2">
+              {sections.map((s) => (
+                <button
+                  key={s.id}
+                  type="button"
+                  onClick={() => expandAndJump(s.id)}
+                  className="block w-full rounded-xl px-3 py-2 text-left text-sm text-zinc-300 transition hover:bg-zinc-900 hover:text-white"
+                >
+                  {s.title}
+                </button>
+              ))}
+            </nav>
           </div>
-          <nav className="space-y-2">
-            {sections.map((section) => (
-              <button
-                key={section.id}
-                type="button"
-                onClick={() => expandAndJump(section.id)}
-                className="block w-full rounded-xl px-3 py-2 text-left text-sm text-zinc-300 transition hover:bg-zinc-900 hover:text-white"
-              >
-                {section.title}
-              </button>
-            ))}
-          </nav>
         </aside>
 
-        <main className="w-full px-4 py-6 sm:px-6 lg:px-10 lg:py-10">
-          <div className="mx-auto max-w-4xl">
-            <div className="mb-6 flex items-center justify-between lg:hidden">
-              <div>
-                <p className="text-sm uppercase tracking-[0.25em] text-zinc-500">Rulebook</p>
-                <h1 className="mt-2 text-3xl font-bold">Board Game Rules</h1>
-              </div>
-              <details className="relative">
-                <summary className="cursor-pointer list-none rounded-2xl border border-zinc-800 bg-zinc-900/80 px-4 py-3 font-semibold">☰ Sections</summary>
-                <div className="absolute right-0 z-20 mt-3 w-72 rounded-2xl border border-zinc-800 bg-zinc-900 p-3 shadow-2xl shadow-black/40">
-                  <div className="space-y-2">
-                    {sections.map((section) => (
-                      <button
-                        key={section.id}
-                        type="button"
-                        onClick={() => expandAndJump(section.id)}
-                        className="block w-full rounded-xl px-3 py-2 text-left text-sm text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
-                      >
-                        {section.title}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </details>
-            </div>
-
-            <div className="mb-8 rounded-3xl border border-zinc-800 bg-zinc-900/60 p-6 shadow-2xl shadow-black/20 lg:hidden">
-              <p className="text-zinc-400">Use the sections button to jump around on mobile.</p>
-            </div>
-
-            <div className="mb-10 hidden rounded-3xl border border-zinc-800 bg-zinc-900/60 p-8 shadow-2xl shadow-black/20 lg:block">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8">
+          <div className="mb-6 flex items-center justify-between lg:hidden">
+            <div>
               <p className="text-sm uppercase tracking-[0.25em] text-zinc-500">Rulebook</p>
-              <h1 className="mt-2 text-4xl font-bold">Board Game Rules</h1>
-              <p className="mt-3 max-w-2xl text-zinc-400">A clean, quick-reference version of the rules with sidebar navigation for easier reading during play.</p>
+              <h1 className="mt-1 text-3xl font-bold">Board Game Rules</h1>
             </div>
+            <details className="relative">
+              <summary className="cursor-pointer list-none rounded-2xl border border-zinc-800 bg-zinc-900/80 px-4 py-3 font-semibold">☰ Sections</summary>
+              <div className="absolute right-0 z-20 mt-3 w-72 rounded-2xl border border-zinc-800 bg-zinc-900 p-3 shadow-2xl shadow-black/40">
+                <div className="space-y-2">
+                  {sections.map((s) => (
+                    <button
+                      key={s.id}
+                      type="button"
+                      onClick={() => expandAndJump(s.id)}
+                      className="block w-full rounded-xl px-3 py-2 text-left text-sm text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
+                    >
+                      {s.title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </details>
+          </div>
 
-            <div className="space-y-4">
-              {sections.map((section) => {
-                const isOpen = openSections[section.id];
-                return (
-                  <section key={section.id} id={section.id} className="scroll-mt-6">
-                    <div className="overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/60 shadow-xl shadow-black/10">
-                      <button
-                        type="button"
-                        onClick={() => toggleSection(section.id)}
-                        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
-                      >
-                        <h2 className="text-xl font-semibold">{section.title}</h2>
-                        <span className={`rounded-full border border-zinc-700 px-3 py-1 text-xs text-zinc-400 transition ${isOpen ? "rotate-180" : ""}`}>
-                          ▼
-                        </span>
-                      </button>
-                      {isOpen && (
-                        <div className="border-t border-zinc-800 px-6 py-5 leading-7 text-zinc-300">
-                          {section.content}
-                        </div>
-                      )}
-                    </div>
-                  </section>
-                );
-              })}
-            </div>
+          <div className="space-y-4">
+            {sections.map((s) => {
+              const isOpen = openSections[s.id];
+              return (
+                <section key={s.id} id={s.id} className="scroll-mt-6">
+                  <div className="overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/60 shadow-xl shadow-black/10">
+                    <button
+                      type="button"
+                      onClick={() => toggleSection(s.id)}
+                      className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                    >
+                      <h2 className="text-xl font-semibold">{s.title}</h2>
+                      <span className={`rounded-full border border-zinc-700 px-3 py-1 text-xs text-zinc-400 transition ${isOpen ? "rotate-180" : ""}`}>
+                        ▼
+                      </span>
+                    </button>
+                    {isOpen && <div className="border-t border-zinc-800 px-6 py-5 leading-7 text-zinc-300">{s.content}</div>}
+                  </div>
+                </section>
+              );
+            })}
           </div>
         </main>
       </div>
