@@ -143,7 +143,7 @@ export default function BoardGameRulesPage() {
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">Bulwarks</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>HP: ♥♥♥ #{N("3")}</li>
+                <li>HP: ♥ ♥ ♥ x {N("3")}</li>
                 <li>Defense: 🎲</li>
                 <li>Each {R("attack")} removes {N("1")} HP.</li>
                 <li>At least {N("1")} Bulwark must be destroyed before the Fish can be attacked.</li>
@@ -154,7 +154,7 @@ export default function BoardGameRulesPage() {
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">Fish</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>HP: ♥♥♥♥♥♥ #{N("6")}</li>
+                <li>HP: ♥ ♥ ♥ ♥ ♥ ♥ x {N("6")}</li>
                 <li>
                   Defense by destroyed Bulwarks:
                   <ul className="mt-1 list-disc space-y-1 pl-6">
@@ -188,7 +188,7 @@ export default function BoardGameRulesPage() {
             <li>The Boss spawns on ⏰ {N("Turn 15")} and again on ⏰ {N("Turn 45")}.</li>
             <li>HP: ♥♥♥ #{N("3")}</li>
             <li>Defense: 🎲</li>
-            <li>Reward: {N("2")} coins.</li>
+            <li>Reward: 🪙 {N("2")} coins.</li>
           </ul>
         ),
       },
@@ -209,13 +209,13 @@ export default function BoardGameRulesPage() {
               <h3 className="text-lg font-semibold">Command Skills</h3>
               <p className="mb-2 text-zinc-400">Declared before movement. The Team Captain sends the choice to the game master. Each skill has a ⏰ {N("3-turn")} cooldown. Each skill lasts ⏰ {N("1 turn")} unless noted otherwise.</p>
               <ul className="list-disc space-y-1 pl-6">
-                <li><strong>Player Speed — {N("1 coin")}:</strong> {N("+3")} to all player movement rolls.</li>
-                <li><strong>Healing Reduction — {N("1 coin")}:</strong> Negates all enemy healer bonuses.</li>
-                <li><strong>Bulwark Damage — {N("1 coin")}:</strong> {N("+4")} to total {R("attack")} rolls against Bulwarks.</li>
-                <li><strong>Fish Damage — {N("1 coin")}:</strong> {N("+4")} to total {R("attack")} rolls against Fish.</li>
-                <li><strong>City Protection — {N("2 coins")}:</strong> All attacks against Bulwarks and Fish are negated.</li>
-                <li><strong>Tree Speed — {N("2 coins")}:</strong> The Tree Carrier’s movement is doubled.</li>
-                <li><strong>Ballista Charges — {N("1 coin")}:</strong> {N("2 uses")} total, does not expire, teleport from Base, and cannot act that turn.</li>
+                <li><strong>Player Speed — 🪙 {N("1 coin")}:</strong> {N("+3")} to all player movement rolls.</li>
+                <li><strong>Healing Reduction — 🪙 {N("1 coin")}:</strong> Negates all enemy healer bonuses.</li>
+                <li><strong>Bulwark Damage — 🪙 {N("1 coin")}:</strong> {N("+4")} to total {R("attack")} rolls against Bulwarks.</li>
+                <li><strong>Fish Damage — 🪙 {N("1 coin")}:</strong> {N("+4")} to total {R("attack")} rolls against Fish.</li>
+                <li><strong>City Protection — 🪙 {N("2 coins")}:</strong> All attacks against Bulwarks and Fish are negated.</li>
+                <li><strong>Tree Speed — 🪙 {N("2 coins")}:</strong> The Tree Carrier’s movement is doubled.</li>
+                <li><strong>Ballista Charges — 🪙 {N("1 coin")}:</strong> {N("2 uses")} total, does not expire. Players starting at Base may teleport anywhere on the board for their movement, but cannot act that turn.</li>
               </ul>
             </div>
           </div>
@@ -238,7 +238,7 @@ export default function BoardGameRulesPage() {
           <ul className="list-disc space-y-1 pl-6">
             <li>Halftime occurs on ⏰ {N("Turn 30")}.</li>
             <li>All Jungle coins respawn.</li>
-            <li>Archery Duel reward: {N("2 coins")}.</li>
+            <li>Archery Duel reward: 🪙 {N("2 coins")}.</li>
           </ul>
         ),
       },
