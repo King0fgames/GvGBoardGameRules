@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 
 const Red = ({ children }: { children: React.ReactNode }) => (
   <span className="rounded bg-red-500/10 px-1.5 py-0.5 text-red-300">{children}</span>
@@ -359,7 +359,7 @@ export default function Page() {
           <div className="pointer-events-none fixed left-3 top-3 z-30 lg:hidden">
             <details ref={mobileMenuRef} className="pointer-events-auto relative">
               <summary className="cursor-pointer list-none rounded-2xl border border-zinc-800 bg-zinc-900/60 px-4 py-3 font-semibold shadow-2xl shadow-black/30 backdrop-blur-md">☰ Sections</summary>
-              <div className="absolute left-0 z-20 mt-3 w-[min(18rem,calc(100vw-1.5rem))] rounded-2xl border border-zinc-800 bg-zinc-900 p-3 shadow-2xl shadow-black/40">
+              <div className="absolute left-0 z-20 mt-2 w-[min(18rem,calc(100vw-1rem))] rounded-2xl border border-zinc-800 bg-zinc-900 p-2 shadow-xl shadow-black/30">
                 <div className="space-y-2">
                   {sections.map((s) => (
                     <button
