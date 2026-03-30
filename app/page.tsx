@@ -21,6 +21,7 @@ type Section = {
 };
 
 export default function Page() {
+  const mobileMenuRef = useRef<HTMLDetailsElement | null>(null);
   const sections: Section[] = useMemo(
     () => [
       {
@@ -135,7 +136,7 @@ export default function Page() {
         id: "tile-interactions",
         title: "Tile Interactions",
         content: (
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div>
               <h3 className="text-lg font-semibold">Open Combat</h3>
               <p>Players on the same tile fight using the standard combat rules.</p>
@@ -166,9 +167,11 @@ export default function Page() {
           <div className="space-y-6">
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">Bulwarks</h3>
-              <ul className="mt-2 list-disc pl-6 space-y-1">
-                <li>HP: ♥ ♥ ♥ x<Num>3</Num></li>
-                <li>Defense: 🎲</li>
+              <div className="mt-2 space-y-1">
+                <p><strong>HP:</strong> ♥ ♥ ♥ x<Num>3</Num></p>
+                <p><strong>Defense:</strong> 🎲</p>
+              </div>
+              <ul className="mt-3 list-disc pl-6 space-y-1">
                 <li>Each successful <Red>attack</Red> removes <Num>1</Num> HP.</li>
                 <li>At least <Num>1</Num> Bulwark must be destroyed before the Fish can be attacked.</li>
                 <li>Each destroyed Bulwark lowers the Fish’s defense tier.</li>
@@ -179,16 +182,18 @@ export default function Page() {
 
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">Fish</h3>
-              <ul className="mt-2 list-disc pl-6 space-y-1">
-                <li>HP: ♥ ♥ ♥ ♥ ♥ ♥ x<Num>6</Num></li>
-                <li>
-                  Defense by destroyed Bulwarks:
+              <div className="mt-2 space-y-1">
+                <p><strong>HP:</strong> ♥ ♥ ♥ ♥ ♥ ♥ x<Num>6</Num></p>
+                <div>
+                  <p><strong>Defense by destroyed Bulwarks:</strong></p>
                   <ul className="mt-1 list-disc pl-6 space-y-1">
                     <li><Num>1</Num> Bulwark destroyed: 🎲 + <Num>2</Num></li>
                     <li><Num>2</Num> Bulwarks destroyed: 🎲</li>
                     <li><Num>3</Num> Bulwarks destroyed: 🎲 - <Num>2</Num></li>
                   </ul>
-                </li>
+                </div>
+              </div>
+              <ul className="mt-3 list-disc pl-6 space-y-1">
                 <li>Each successful <Red>attack</Red> removes <Num>1</Num> HP.</li>
                 <li>Once destroyed, the Tree becomes available.</li>
               </ul>
@@ -199,11 +204,16 @@ export default function Page() {
               <ul className="mt-2 list-disc pl-6 space-y-1">
                 <li>A player may pick up the Tree as their action.</li>
                 <li>The Tree must be carried back to Base to win.</li>
-                <li>Movement: <Num>2</Num> spaces per turn.</li>
-                <li>If enemies are on the Tree’s tile at the start of the Movement Phase, movement becomes <Num>1</Num>.</li>
-                <li>The Tree adds <Num>+2</Num> to the total <Blue>defensive</Blue> roll.</li>
-                <li>If the Tree defense loses, the Tree carrier drops the Tree and is knocked down.</li>
               </ul>
+              <div className="mt-3 border-t border-zinc-800/80 pt-3">
+                <h4 className="text-base font-semibold">Tree Carrier</h4>
+                <ul className="mt-2 list-disc pl-6 space-y-1">
+                  <li>Movement: <Num>2</Num> spaces per turn.</li>
+                  <li>If enemies are on the Tree’s tile at the start of the Movement Phase, movement becomes <Num>1</Num>.</li>
+                  <li>The Tree adds <Num>+2</Num> to the total <Blue>defensive</Blue> roll.</li>
+                  <li>If the Tree defense loses, the Tree Carrier drops the Tree and is knocked down.</li>
+                </ul>
+              </div>
             </div>
           </div>
         ),
@@ -244,10 +254,12 @@ export default function Page() {
         content: (
           <div className="space-y-3">
             <p>Team Captain must send Command Skill usage to the game master before or by the Movement Phase.</p>
-            <p>Cooldown: ⏰ <Num>3 turns</Num></p>
-            <p>Duration: ⏰ <Num>1 turn</Num></p>
+            <div className="space-y-1 border-t border-zinc-800/80 pt-3">
+              <p><strong>Cooldown:</strong> ⏰ <Num>3 turns</Num></p>
+              <p><strong>Duration:</strong> ⏰ <Num>1 turn</Num></p>
+            </div>
 
-            <div className="space-y-2 pt-2">
+            <div className="space-y-2 border-t border-zinc-800/80 pt-3">
               <p><strong>Player Speed — 🟡 <Num>1</Num></strong><br />Adds <Num>+3</Num> to all player movement rolls.</p>
               <p><strong>Healing Reduction — 🟡 <Num>1</Num></strong><br />Negates all enemy healer bonuses.</p>
               <p><strong>Bulwark Damage — 🟡 <Num>1</Num></strong><br />Adds <Num>+4</Num> to total <Red>attack</Red> rolls against Bulwarks.</p>
@@ -323,31 +335,40 @@ export default function Page() {
             <p className="text-sm uppercase tracking-[0.25em] text-zinc-500">Rulebook</p>
             <h1 className="mb-4 text-2xl font-bold leading-tight">WWM GvG<br />Board Game</h1>
             <nav className="space-y-2">
-              {sections.map((s) => (
-                <button
+              {sections.map((s, i) => (
+                <div key={s.id}>
+                  {i !== 0 && <div className="mx-2 my-1 h-px bg-zinc-800/60" />}
+                  <button
                   key={s.id}
                   type="button"
-                  onClick={() => expandAndJump(s.id)}
+                  onClick={() => {
+                      expandAndJump(s.id);
+                      if (mobileMenuRef.current) mobileMenuRef.current.open = false;
+                    }}
                   className="block w-full rounded-xl px-3 py-2 text-left text-sm text-zinc-300 transition hover:bg-zinc-900 hover:text-white"
                 >
                   {s.title}
-                </button>
+                  </button>
+                </div>
               ))}
             </nav>
           </div>
         </aside>
 
-        <main className="flex-1 p-4 sm:p-6 lg:p-8">
+        <main className="flex-1 p-3 sm:p-5 lg:p-6">
           <div className="pointer-events-none fixed left-3 top-3 z-30 lg:hidden">
-            <details className="pointer-events-auto relative">
+            <details ref={mobileMenuRef} className="pointer-events-auto relative">
               <summary className="cursor-pointer list-none rounded-2xl border border-zinc-800 bg-zinc-900/60 px-4 py-3 font-semibold shadow-2xl shadow-black/30 backdrop-blur-md">☰ Sections</summary>
-              <div className="absolute left-0 z-20 mt-3 max-h-[70vh] w-[min(18rem,calc(100vw-1.5rem))] overflow-y-auto rounded-2xl border border-zinc-800 bg-zinc-900 p-3 shadow-2xl shadow-black/40">
+              <div className="absolute left-0 z-20 mt-3 w-[min(18rem,calc(100vw-1.5rem))] rounded-2xl border border-zinc-800 bg-zinc-900 p-3 shadow-2xl shadow-black/40">
                 <div className="space-y-2">
                   {sections.map((s) => (
                     <button
                       key={s.id}
                       type="button"
-                      onClick={() => expandAndJump(s.id)}
+                      onClick={() => {
+                      expandAndJump(s.id);
+                      if (mobileMenuRef.current) mobileMenuRef.current.open = false;
+                    }}
                       className="block w-full rounded-xl px-3 py-2 text-left text-sm text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
                     >
                       {s.title}
@@ -378,14 +399,14 @@ export default function Page() {
                     <button
                       type="button"
                       onClick={() => toggleSection(s.id)}
-                      className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                      className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
                     >
                       <h2 className="text-xl font-semibold">{s.title}</h2>
                       <span className={`rounded-full border border-zinc-700 px-3 py-1 text-xs text-zinc-400 transition ${isOpen ? "rotate-180" : ""}`}>
                         ▼
                       </span>
                     </button>
-                    {isOpen && <div className="border-t border-zinc-800 px-6 py-5 leading-7 text-zinc-300">{s.content}</div>}
+                    {isOpen && <div className="border-t border-zinc-800 px-5 py-4 leading-7 text-zinc-300">{s.content}</div>}
                   </div>
                 </section>
               );
