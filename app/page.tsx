@@ -6,11 +6,7 @@ const R = (t: string) => <span className="rounded bg-red-500/10 px-1.5 py-0.5 te
 const B = (t: string) => <span className="rounded bg-blue-500/10 px-1.5 py-0.5 text-blue-300">{t}</span>;
 const N = (t: string) => <strong className="text-white">{t}</strong>;
 
-type Section = {
-  id: string;
-  title: string;
-  content: React.ReactNode;
-};
+type Section = { id: string; title: string; content: React.ReactNode };
 
 export default function BoardGameRulesPage() {
   const sections: Section[] = useMemo(
@@ -39,98 +35,19 @@ export default function BoardGameRulesPage() {
 
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">🗡️ DPS</h3>
-              <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>{N("+2")} to {R("offensive")} rolls against players in open tiles.</li>
-                <li>{N("+2")} to {R("offensive")} rolls when attacking Bulwarks or Fish.</li>
-              </ul>
+              <p>{N("+2")} to {R("offensive")} rolls vs players in open tiles and when attacking Bulwarks or Fish.</p>
             </div>
 
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">🛡️ Tank</h3>
-              <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>{N("+2")} to {B("defensive")} rolls when defending a Bulwark, Fish, or Tree.</li>
-              </ul>
+              <p>{N("+2")} to {B("defensive")} rolls when defending Bulwark, Fish, or Tree.</p>
             </div>
 
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">🍃 Healer</h3>
-              <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>
-                  <strong>Buff</strong>
-                  <ul className="mt-1 list-disc space-y-1 pl-6">
-                    <li>Add {N("+2")} to each allied player’s roll within {N("1")} square.</li>
-                    <li>The Healer does not roll.</li>
-                    <li>If not on the same tile, the Healer cannot be targeted or knocked down.</li>
-                  </ul>
-                </li>
-                <li><strong>Revive:</strong> Revive allies within {N("1")} square.</li>
-                <li><strong>Act Normally:</strong> Roll 🎲.</li>
-              </ul>
-            </div>
-          </div>
-        ),
-      },
-      {
-        id: "setup",
-        title: "Setup",
-        content: (
-          <ul className="list-disc space-y-1 pl-6">
-            <li>Teams begin at their respective Base.</li>
-            <li>Players may exit from any of the {N("3")} stair platforms.</li>
-          </ul>
-        ),
-      },
-      {
-        id: "turn-structure",
-        title: "Turn Structure",
-        content: (
-          <ol className="list-decimal space-y-2 pl-6">
-            <li><strong>Command Phase:</strong> Team Captains may activate Command Skills. Skills must be declared before movement.</li>
-            <li><strong>Movement Phase:</strong> Each player rolls 🎲 and may move up to that many spaces. All movement resolves simultaneously.</li>
-            <li><strong>Action Phase:</strong> All tiles resolve simultaneously based on final player positions.</li>
-          </ol>
-        ),
-      },
-      {
-        id: "combat",
-        title: "Combat",
-        content: (
-          <div className="space-y-3">
-            <p>Each tile resolves as a separate battle.</p>
-            <ul className="list-disc space-y-1 pl-6">
-              <li>{R("Attacking")} totals vs. {B("Defending")} totals.</li>
-              <li>The higher total wins.</li>
-              <li><strong>Open Tile PvP tie:</strong> Stalemate.</li>
-              <li><strong>Structure PvE tie:</strong> Player win.</li>
-              <li><strong>Structure PvP tie:</strong> Structure win.</li>
-            </ul>
-          </div>
-        ),
-      },
-      {
-        id: "tile-interactions",
-        title: "Tile Interactions",
-        content: (
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold">Open Combat</h3>
-              <p>Players on the same tile fight using the standard combat rules.</p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold">Jungle (Drum / Coin Tiles)</h3>
-              <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>If uncontested, the player gains the coin.</li>
-                <li>If contested, combat occurs. The winner gains the coin and the losers are knocked down.</li>
-                <li>Jungle coins respawn on Halftime, at ⏰ {N("Turn 30")}.</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold">Defending Structures</h3>
-              <p>Players on a {B("friendly")} structure roll and add their results to that structure’s defense.</p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold">Attacking Structures</h3>
-              <p>Players on an {R("enemy")} structure contribute their rolls and bonuses to the attacking total.</p>
+              <p><strong>Buff:</strong> Add {N("+2")} to each allied player within {N("1")} square. Healer does not roll. If not on the same tile, cannot be targeted.</p>
+              <p><strong>Revive:</strong> Revive allies within {N("1")} square.</p>
+              <p><strong>Act Normally:</strong> Roll 🎲.</p>
             </div>
           </div>
         ),
@@ -142,40 +59,27 @@ export default function BoardGameRulesPage() {
           <div className="space-y-6">
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">Bulwarks</h3>
-              <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>HP: ♥ ♥ ♥ x{N("3")}</li>
-                <li>Defense: 🎲</li>
-                <li>Each {R("attack")} removes {N("1")} HP.</li>
-                <li>At least {N("1")} Bulwark must be destroyed before the Fish can be attacked.</li>
-                <li>If {B("defenders")} win, {R("attackers")} are knocked down.</li>
-              </ul>
+              <p>HP: ♥ ♥ ♥ x{N("3")}</p>
+              <p>Defense: 🎲</p>
+              <p>Each {R("attack")} removes {N("1")} HP.</p>
             </div>
 
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">Fish</h3>
-              <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>HP: ♥ ♥ ♥ ♥ ♥ ♥ x{N("6")}</li>
-                <li>
-                  Defense by destroyed Bulwarks:
-                  <ul className="mt-1 list-disc space-y-1 pl-6">
-                    <li>{N("1")} Bulwark destroyed: 🎲 + {N("2")}</li>
-                    <li>{N("2")} Bulwarks destroyed: 🎲</li>
-                    <li>{N("3")} Bulwarks destroyed: 🎲 - {N("2")}</li>
-                  </ul>
-                </li>
-                <li>Each {R("attack")} removes {N("1")} HP.</li>
-              </ul>
+              <p>HP: ♥ ♥ ♥ ♥ ♥ ♥ x{N("6")}</p>
+              <p>{N("1")} Bulwark destroyed: 🎲 + {N("2")}</p>
+              <p>{N("2")} Bulwarks destroyed: 🎲</p>
+              <p>{N("3")} Bulwarks destroyed: 🎲 - {N("2")}</p>
+              <p>Each {R("attack")} removes {N("1")} HP.</p>
             </div>
 
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">Tree</h3>
-              <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>A player may pick up the Tree as their action.</li>
-                <li>The Tree must be carried back to Base to win.</li>
-                <li>Movement: {N("2")} spaces per turn.</li>
-                <li>If enemies are on the same tile at the start of the turn, the Tree Carrier moves {N("1")} space instead.</li>
-                <li>The Tree gives its carrier {N("+2")} to {B("defensive")} rolls.</li>
-              </ul>
+              <p>Pick up as action. Return to Base to win.</p>
+              <p>Movement: {N("2")} per turn.</p>
+              <p>If enemies are on the Tree’s tile at the start of the movement phase → movement is {N("1")}.</p>
+              <p>Tree adds {N("+2")} to total {B("defensive")} roll.</p>
+              <p>If defense loses → carrier drops Tree and is knocked down.</p>
             </div>
           </div>
         ),
@@ -184,62 +88,64 @@ export default function BoardGameRulesPage() {
         id: "boss",
         title: "Boss",
         content: (
-          <ul className="list-disc space-y-1 pl-6">
-            <li>The Boss spawns on ⏰ {N("Turn 15")} and again on ⏰ {N("Turn 45")}.</li>
-            <li>HP: ♥♥♥ #{N("3")}</li>
-            <li>Defense: 🎲</li>
-            <li>Reward: 🪙 {N("2")} coins.</li>
-          </ul>
-        ),
-      },
-      {
-        id: "coins-skills",
-        title: "Coins & Command Skills",
-        content: (
-          <div className="space-y-5">
-            <div>
-              <h3 className="text-lg font-semibold">Coins</h3>
-              <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>Coins are earned from Jungle Drums and Boss kills.</li>
-                <li>Coins persist until used.</li>
-                <li>Coins are used to activate Command Skills.</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold">Command Skills</h3>
-              <p className="mb-2 text-zinc-400">Declared before movement. The Team Captain sends the choice to the game master. Each skill has a ⏰ {N("3-turn")} cooldown. Each skill lasts ⏰ {N("1 turn")} unless noted otherwise.</p>
-              <ul className="list-disc space-y-1 pl-6">
-                <li><strong>Player Speed — 🪙 {N("1 coin")}:</strong> {N("+3")} to all player movement rolls.</li>
-                <li><strong>Healing Reduction — 🪙 {N("1 coin")}:</strong> Negates all enemy healer bonuses.</li>
-                <li><strong>Bulwark Damage — 🪙 {N("1 coin")}:</strong> {N("+4")} to total {R("attack")} rolls against Bulwarks.</li>
-                <li><strong>Fish Damage — 🪙 {N("1 coin")}:</strong> {N("+4")} to total {R("attack")} rolls against Fish.</li>
-                <li><strong>City Protection — 🪙 {N("2 coins")}:</strong> All attacks against Bulwarks and Fish are negated.</li>
-                <li><strong>Tree Speed — 🪙 {N("2 coins")}:</strong> The Tree Carrier’s movement is doubled.</li>
-                <li><strong>Ballista Charges — 🪙 {N("1 coin")}:</strong> {N("2 uses")} total, does not expire. Players starting at Base may teleport anywhere on the board for their movement, but cannot act that turn.</li>
-              </ul>
-            </div>
+          <div>
+            <p>Spawns on ⏰ {N("Turn 15")} and ⏰ {N("Turn 45")}</p>
+            <p>HP: ♥ ♥ ♥ x{N("3")}</p>
+            <p>Defense: 🎲</p>
+            <p>Reward: 🟡 {N("2")} coins</p>
           </div>
         ),
       },
       {
-        id: "status-effects",
-        title: "Status Effects",
+        id: "coins",
+        title: "Coins",
         content: (
-          <ul className="list-disc space-y-1 pl-6">
-            <li>A knocked-down player skips their next turn’s movement and action.</li>
-            <li>If not revived, they respawn at Base on the following turn.</li>
-          </ul>
+          <div>
+            <p>Earned from Jungle and Boss.</p>
+            <p>Shown by drums above Base.</p>
+          </div>
+        ),
+      },
+      {
+        id: "skills",
+        title: "Command Skills",
+        content: (
+          <div className="space-y-2">
+            <p>Captain must send skill usage to game master before or by movement phase.</p>
+            <p>Cooldown: ⏰ {N("3 turns")}</p>
+            <p>Duration: ⏰ {N("1 turn")}</p>
+
+            <p><strong>Player Speed — 🟡 {N("1")}</strong>: {N("+3")} movement</p>
+            <p><strong>Healing Reduction — 🟡 {N("1")}</strong>: disables healer bonuses</p>
+            <p><strong>Bulwark Damage — 🟡 {N("1")}</strong>: {N("+4")} vs Bulwarks</p>
+            <p><strong>Fish Damage — 🟡 {N("1")}</strong>: {N("+4")} vs Fish</p>
+            <p><strong>City Protection — 🟡 {N("2")}</strong>: negate structure damage</p>
+            <p><strong>Tree Speed — 🟡 {N("2")}</strong>: double Tree speed</p>
+            <p><strong>Ballista — 🟡 {N("1")}</strong>: {N("2 uses")}, teleport anywhere on board for movement, cannot act</p>
+          </div>
+        ),
+      },
+      {
+        id: "status",
+        title: "Status",
+        content: (
+          <div>
+            <p>Knocked Down lasts {N("1 turn")}.</p>
+            <p>Player skips that turn.</p>
+            <p>If revived → continue next turn from same square.</p>
+            <p>If not → respawn at Base next turn.</p>
+          </div>
         ),
       },
       {
         id: "halftime",
         title: "Halftime",
         content: (
-          <ul className="list-disc space-y-1 pl-6">
-            <li>Halftime occurs on ⏰ {N("Turn 30")}.</li>
-            <li>All Jungle coins respawn.</li>
-            <li>Archery Duel reward: 🪙 {N("2 coins")}.</li>
-          </ul>
+          <div>
+            <p>Occurs on ⏰ {N("Turn 30")}</p>
+            <p>Coins respawn.</p>
+            <p>Archery Duel: best of {N("5")}. Each round, closest to center scores {N("1")} point. First to {N("3")} wins 🟡 {N("2")} coins.</p>
+          </div>
         ),
       },
     ],
@@ -269,81 +175,30 @@ export default function BoardGameRulesPage() {
         window.scrollTo({ top: y, behavior: "smooth" });
       }
     }, 0);
-    window.setTimeout(() => setHighlightedSection((prev) => (prev === id ? null : prev)), 1800);
+    setTimeout(() => setHighlightedSection(null), 1500);
   };
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
       <div className="mx-auto flex max-w-7xl">
-        <aside className="hidden w-64 shrink-0 border-r border-zinc-800 p-4 lg:block">
-          <div className="sticky top-4">
-            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-zinc-500">Rulebook</p>
-            <h1 className="mb-4 whitespace-nowrap text-[1.7rem] font-bold leading-tight">WWM GvG Board Game</h1>
-            <nav className="space-y-2">
-              {sections.map((s) => (
-                <button
-                  key={s.id}
-                  type="button"
-                  onClick={() => expandAndJump(s.id)}
-                  className="block w-full rounded-xl px-3 py-2 text-left text-sm text-zinc-300 transition hover:bg-zinc-900 hover:text-white"
-                >
-                  {s.title}
-                </button>
-              ))}
-            </nav>
-          </div>
+        <aside className="hidden w-64 border-r border-zinc-800 p-4 lg:block">
+          <h1 className="mb-4 text-2xl font-bold">WWM GvG<br/>Board Game</h1>
+          {sections.map((s) => (
+            <button key={s.id} onClick={() => expandAndJump(s.id)} className="block mb-2 text-left">
+              {s.title}
+            </button>
+          ))}
         </aside>
 
-        <main className="flex-1 p-4 sm:p-6 lg:p-8">
-          <div className="pointer-events-none fixed left-3 top-3 z-30 lg:hidden">
-            <details className="pointer-events-auto relative">
-              <summary className="cursor-pointer list-none rounded-2xl border border-zinc-800 bg-zinc-900/60 backdrop-blur-md px-4 py-3 font-semibold shadow-2xl shadow-black/30">☰ Sections</summary>
-              <div className="absolute left-0 z-20 mt-3 max-h-[70vh] w-[min(18rem,calc(100vw-1.5rem))] overflow-y-auto rounded-2xl border border-zinc-800 bg-zinc-900 p-3 shadow-2xl shadow-black/40">
-                <div className="space-y-2">
-                  {sections.map((s) => (
-                    <button
-                      key={s.id}
-                      type="button"
-                      onClick={() => expandAndJump(s.id)}
-                      className="block w-full rounded-xl px-3 py-2 text-left text-sm text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
-                    >
-                      {s.title}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </details>
-          </div>
-
-          <div className="mb-6 pt-14 lg:hidden">
-            <div>
-              <p className="text-sm uppercase tracking-[0.25em] text-zinc-500">Rulebook</p>
-              <h1 className="mt-1 text-3xl font-bold">WWM GvG Board Game</h1>
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            {sections.map((s) => {
-              const isOpen = openSections[s.id];
-              return (
-                <section key={s.id} id={s.id} className="scroll-mt-24">
-                  <div className={`overflow-hidden rounded-3xl border bg-zinc-900/60 shadow-xl transition-all duration-500 ${highlightedSection === s.id ? "border-amber-300 shadow-[0_0_0_3px_rgba(252,211,77,0.25)] shadow-amber-200/10" : "border-zinc-800 shadow-black/10"}`}>
-                    <button
-                      type="button"
-                      onClick={() => toggleSection(s.id)}
-                      className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
-                    >
-                      <h2 className="text-xl font-semibold">{s.title}</h2>
-                      <span className={`rounded-full border border-zinc-700 px-3 py-1 text-xs text-zinc-400 transition ${isOpen ? "rotate-180" : ""}`}>
-                        ▼
-                      </span>
-                    </button>
-                    {isOpen && <div className="border-t border-zinc-800 px-6 py-5 leading-7 text-zinc-300">{s.content}</div>}
-                  </div>
-                </section>
-              );
-            })}
-          </div>
+        <main className="flex-1 p-6">
+          {sections.map((s) => (
+            <section key={s.id} id={s.id} className={`mb-4 transition ${highlightedSection===s.id?"ring-2 ring-yellow-300":""}`}>
+              <button onClick={() => toggleSection(s.id)} className="w-full text-left font-bold">
+                {s.title}
+              </button>
+              {openSections[s.id] && <div className="mt-2">{s.content}</div>}
+            </section>
+          ))}
         </main>
       </div>
     </div>
