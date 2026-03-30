@@ -143,7 +143,7 @@ export default function BoardGameRulesPage() {
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">Bulwarks</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>HP: ♥ ♥ ♥ x {N("3")}</li>
+                <li>HP: ♥ ♥ ♥ x{N("3")}</li>
                 <li>Defense: 🎲</li>
                 <li>Each {R("attack")} removes {N("1")} HP.</li>
                 <li>At least {N("1")} Bulwark must be destroyed before the Fish can be attacked.</li>
@@ -154,7 +154,7 @@ export default function BoardGameRulesPage() {
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">Fish</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li>HP: ♥ ♥ ♥ ♥ ♥ ♥ x {N("6")}</li>
+                <li>HP: ♥ ♥ ♥ ♥ ♥ ♥ x{N("6")}</li>
                 <li>
                   Defense by destroyed Bulwarks:
                   <ul className="mt-1 list-disc space-y-1 pl-6">
@@ -272,7 +272,7 @@ export default function BoardGameRulesPage() {
         <aside className="hidden w-64 shrink-0 border-r border-zinc-800 p-4 lg:block">
           <div className="sticky top-4">
             <p className="mb-2 text-sm uppercase tracking-[0.25em] text-zinc-500">Rulebook</p>
-            <h1 className="mb-4 text-2xl font-bold">Board Game Rules</h1>
+            <h1 className="mb-4 text-2xl font-bold">WWM GvG Board Game</h1>
             <nav className="space-y-2">
               {sections.map((s) => (
                 <button
@@ -289,14 +289,10 @@ export default function BoardGameRulesPage() {
         </aside>
 
         <main className="flex-1 p-4 sm:p-6 lg:p-8">
-          <div className="mb-6 flex items-center justify-between lg:hidden">
-            <div>
-              <p className="text-sm uppercase tracking-[0.25em] text-zinc-500">Rulebook</p>
-              <h1 className="mt-1 text-3xl font-bold">Board Game Rules</h1>
-            </div>
-            <details className="relative">
-              <summary className="cursor-pointer list-none rounded-2xl border border-zinc-800 bg-zinc-900/80 px-4 py-3 font-semibold">☰ Sections</summary>
-              <div className="absolute right-0 z-20 mt-3 w-72 rounded-2xl border border-zinc-800 bg-zinc-900 p-3 shadow-2xl shadow-black/40">
+          <div className="pointer-events-none fixed left-3 top-3 z-30 lg:hidden">
+            <details className="pointer-events-auto relative">
+              <summary className="cursor-pointer list-none rounded-2xl border border-zinc-800 bg-zinc-900/60 backdrop-blur-md px-4 py-3 font-semibold shadow-2xl shadow-black/30">☰ Sections</summary>
+              <div className="absolute left-0 z-20 mt-3 w-72 rounded-2xl border border-zinc-800 bg-zinc-900 p-3 shadow-2xl shadow-black/40">
                 <div className="space-y-2">
                   {sections.map((s) => (
                     <button
@@ -311,6 +307,13 @@ export default function BoardGameRulesPage() {
                 </div>
               </div>
             </details>
+          </div>
+
+          <div className="mb-6 pt-14 lg:hidden">
+            <div>
+              <p className="text-sm uppercase tracking-[0.25em] text-zinc-500">Rulebook</p>
+              <h1 className="mt-1 text-3xl font-bold">WWM GvG Board Game</h1>
+            </div>
           </div>
 
           <div className="space-y-4">
