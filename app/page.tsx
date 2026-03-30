@@ -360,17 +360,17 @@ export default function Page() {
             <details ref={mobileMenuRef} className="pointer-events-auto relative">
               <summary className="cursor-pointer list-none rounded-2xl border border-zinc-800 bg-zinc-900/60 px-4 py-3 font-semibold shadow-2xl shadow-black/30 backdrop-blur-md">☰ Sections</summary>
               <div className="absolute left-0 z-20 mt-2 w-[min(18rem,calc(100vw-1rem))] rounded-2xl border border-zinc-800 bg-zinc-900 p-2 shadow-xl shadow-black/30">
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   {sections.map((s, i) => (
                     <div key={s.id}>
-                      {i !== 0 && <div className="mx-2 my-1 h-px bg-zinc-800/60" />}
+                      {i !== 0 && <div className="mx-2 my-0.5 h-px bg-zinc-800/60" />}
                       <button
                         type="button"
                         onClick={() => {
                           expandAndJump(s.id);
                           if (mobileMenuRef.current) mobileMenuRef.current.open = false;
                         }}
-                        className="block w-full rounded-xl px-3 py-2 text-left text-sm text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
+                        className="block w-full rounded-xl px-3 py-1.5 text-left text-sm text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
                       >
                         {s.title}
                       </button>
