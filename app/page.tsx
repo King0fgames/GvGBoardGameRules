@@ -358,8 +358,8 @@ export default function Page() {
         <main className="flex-1 p-3 sm:p-5 lg:p-6">
           <div className="pointer-events-none fixed left-3 top-3 z-30 lg:hidden">
             <details ref={mobileMenuRef} className="pointer-events-auto relative">
-              <summary className="cursor-pointer list-none rounded-2xl border border-zinc-800 bg-zinc-900/60 px-4 py-3 font-semibold shadow-2xl shadow-black/30 backdrop-blur-md">☰ Sections</summary>
-              <div className="absolute left-0 z-20 mt-2 w-[min(18rem,calc(100vw-1rem))] rounded-2xl border border-zinc-800 bg-zinc-900 p-2 shadow-xl shadow-black/30">
+              <summary className="cursor-pointer list-none rounded-2xl border border-zinc-800 bg-zinc-900/60 px-4 py-2.5 font-semibold shadow-2xl shadow-black/30 backdrop-blur-md">☰ Sections</summary>
+              <div className="absolute left-0 z-20 mt-2 w-[min(18rem,calc(100vw-1rem))] max-h-[calc(100dvh-5rem)] overflow-y-auto rounded-2xl border border-zinc-800 bg-zinc-900 p-1.5 shadow-xl shadow-black/30">
                 <div className="space-y-1.5">
                   {sections.map((s, i) => (
                     <div key={s.id}>
@@ -370,7 +370,7 @@ export default function Page() {
                           expandAndJump(s.id);
                           if (mobileMenuRef.current) mobileMenuRef.current.open = false;
                         }}
-                        className="block w-full rounded-xl px-3 py-1.5 text-left text-sm text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
+                        className="block w-full rounded-xl px-3 py-1 text-left text-sm leading-snug text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
                       >
                         {s.title}
                       </button>
