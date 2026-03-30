@@ -41,7 +41,7 @@ export default function Page() {
       {
         id: "win-condition",
         title: "Win Condition",
-        content: <p>A team wins by capturing the Tree and returning it to their Base.</p>,
+        content: <p>A team wins by capturing the 🍁 Tree and returning it to their Base.</p>,
       },
       {
         id: "roles",
@@ -54,14 +54,14 @@ export default function Page() {
               <h3 className="text-lg font-semibold">🗡️ DPS</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6">
                 <li><Num>+2</Num> to <Red>offensive</Red> rolls against players in open tiles.</li>
-                <li><Num>+2</Num> to <Red>offensive</Red> rolls when attacking Bulwarks or Fish.</li>
+                <li><Num>+2</Num> to <Red>offensive</Red> rolls when attacking ♜ Bulwarks or 🐠 Fish.</li>
               </ul>
             </div>
 
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
               <h3 className="text-lg font-semibold">🛡️ Tank</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6">
-                <li><Num>+2</Num> to <Blue>defensive</Blue> rolls when defending Bulwark, Fish, or Tree.</li>
+                <li><Num>+2</Num> to <Blue>defensive</Blue> rolls when defending ♜ Bulwark, 🐠 Fish, or 🍁 Tree.</li>
               </ul>
             </div>
 
@@ -166,52 +166,52 @@ export default function Page() {
         content: (
           <div className="space-y-6">
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
-              <h3 className="text-lg font-semibold">Bulwarks</h3>
+              <h3 className="text-lg font-semibold">♜ Bulwarks</h3>
               <div className="mt-2 space-y-1">
                 <p><strong>HP:</strong> ♥ ♥ ♥ x<Num>3</Num></p>
                 <p><strong>Defense:</strong> 🎲</p>
               </div>
               <ul className="mt-3 list-disc pl-6 space-y-1">
                 <li>Each successful <Red>attack</Red> removes <Num>1</Num> HP.</li>
-                <li>At least <Num>1</Num> Bulwark must be destroyed before the Fish can be attacked.</li>
-                <li>Each destroyed Bulwark lowers the Fish’s defense tier.</li>
+                <li>At least <Num>1</Num> ♜ Bulwark must be destroyed before the 🐠 Fish can be attacked.</li>
+                <li>Each destroyed ♜ Bulwark lowers the 🐠 Fish’s defense tier.</li>
                 <li>If <Blue>defenders</Blue> win, <Red>attackers</Red> are knocked down.</li>
-                <li>If a defended Bulwark is destroyed, its defenders are knocked down.</li>
+                <li>If a defended ♜ Bulwark is destroyed, its defenders are knocked down.</li>
               </ul>
             </div>
 
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
-              <h3 className="text-lg font-semibold">Fish</h3>
+              <h3 className="text-lg font-semibold">🐠 Fish</h3>
               <div className="mt-2 space-y-1">
                 <p><strong>HP:</strong> ♥ ♥ ♥ ♥ ♥ ♥ x<Num>6</Num></p>
                 <div>
-                  <p><strong>Defense by destroyed Bulwarks:</strong></p>
+                  <p><strong>Defense by destroyed ♜ Bulwarks:</strong></p>
                   <ul className="mt-1 list-disc pl-6 space-y-1">
-                    <li><Num>1</Num> Bulwark destroyed: 🎲 + <Num>2</Num></li>
-                    <li><Num>2</Num> Bulwarks destroyed: 🎲</li>
-                    <li><Num>3</Num> Bulwarks destroyed: 🎲 - <Num>2</Num></li>
+                    <li><Num>1</Num> ♜ Bulwark destroyed: 🎲 + <Num>2</Num></li>
+                    <li><Num>2</Num> ♜ Bulwarks destroyed: 🎲</li>
+                    <li><Num>3</Num> ♜ Bulwarks destroyed: 🎲 - <Num>2</Num></li>
                   </ul>
                 </div>
               </div>
               <ul className="mt-3 list-disc pl-6 space-y-1">
                 <li>Each successful <Red>attack</Red> removes <Num>1</Num> HP.</li>
-                <li>Once destroyed, the Tree becomes available.</li>
+                <li>Once destroyed, the 🍁 Tree becomes available.</li>
               </ul>
             </div>
 
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4">
-              <h3 className="text-lg font-semibold">Tree</h3>
+              <h3 className="text-lg font-semibold">🍁 Tree</h3>
               <ul className="mt-2 list-disc pl-6 space-y-1">
-                <li>A player may pick up the Tree as their action.</li>
-                <li>The Tree must be carried back to Base to win.</li>
+                <li>A player may pick up the 🍁 Tree as their action.</li>
+                <li>The 🍁 Tree must be carried back to Base to win.</li>
               </ul>
               <div className="mt-3 border-t border-zinc-800/80 pt-3">
-                <h4 className="text-base font-semibold">Tree Carrier</h4>
+                <h4 className="text-base font-semibold">🍁 Tree Carrier</h4>
                 <ul className="mt-2 list-disc pl-6 space-y-1">
                   <li>Movement: <Num>2</Num> spaces per turn.</li>
-                  <li>If enemies are on the Tree’s tile at the start of the Movement Phase, movement becomes <Num>1</Num>.</li>
-                  <li>The Tree adds <Num>+2</Num> to the total <Blue>defensive</Blue> roll.</li>
-                  <li>If the Tree defense loses, the Tree Carrier drops the Tree and is knocked down.</li>
+                  <li>If enemies are on the 🍁 Tree’s tile at the start of the Movement Phase, movement becomes <Num>1</Num>.</li>
+                  <li>The 🍁 Tree adds <Num>+2</Num> to the total <Blue>defensive</Blue> roll.</li>
+                  <li>If the 🍁 Tree defense loses, the 🍁 Tree Carrier drops the 🍁 Tree and is knocked down.</li>
                 </ul>
               </div>
             </div>
@@ -228,7 +228,7 @@ export default function Page() {
             <p>Defense: 🎲</p>
             <p>Reward: 🟡 <Num>2</Num> coins.</p>
             <ul className="mt-2 list-disc pl-6 space-y-1">
-              <li>Location: middle lane.</li>
+              <li>Location: Middle Row, coinflip determines which lane.</li>
               <li>Each team rolls against the Boss, then PvP if applicable.</li>
               <li>Successful rolls against the Boss reduce Boss HP.</li>
               <li>Successful PvP combat rolls knock down the losers.</li>
@@ -242,7 +242,7 @@ export default function Page() {
         title: "Coins",
         content: (
           <div className="space-y-2">
-            <p>Coins are earned from Jungle and Boss.</p>
+            <p>🟡 Coins are earned from Jungle and Boss.</p>
             <p>A team’s coin count is shown by the number of drums above their Base.</p>
             <p>Coins persist until used.</p>
           </div>
@@ -262,10 +262,10 @@ export default function Page() {
             <div className="space-y-2 border-t border-zinc-800/80 pt-3">
               <p><strong>Player Speed — 🟡 <Num>1</Num></strong><br />Adds <Num>+3</Num> to all player movement rolls.</p>
               <p><strong>Healing Reduction — 🟡 <Num>1</Num></strong><br />Negates all enemy healer bonuses.</p>
-              <p><strong>Bulwark Damage — 🟡 <Num>1</Num></strong><br />Adds <Num>+4</Num> to total <Red>attack</Red> rolls against Bulwarks.</p>
-              <p><strong>Fish Damage — 🟡 <Num>1</Num></strong><br />Adds <Num>+4</Num> to total <Red>attack</Red> rolls against Fish.</p>
-              <p><strong>City Protection — 🟡 <Num>2</Num></strong><br />All attacks against Bulwarks and Fish are negated.</p>
-              <p><strong>Tree Speed — 🟡 <Num>2</Num></strong><br />Tree Carrier movement is doubled.</p>
+              <p><strong>♜ Bulwark Damage — 🟡 <Num>1</Num></strong><br />Adds <Num>+4</Num> to total <Red>attack</Red> rolls against ♜ Bulwarks.</p>
+              <p><strong>🐠 Fish Damage — 🟡 <Num>1</Num></strong><br />Adds <Num>+4</Num> to total <Red>attack</Red> rolls against 🐠 Fish.</p>
+              <p><strong>City Protection — 🟡 <Num>2</Num></strong><br />All attacks against ♜ Bulwarks and 🐠 Fish are negated.</p>
+              <p><strong>🍁 Tree Speed — 🟡 <Num>2</Num></strong><br />🍁 Tree Carrier movement is doubled.</p>
               <p><strong>Ballista Charges — 🟡 <Num>1</Num></strong><br />Has <Num>2 uses</Num> and does not expire. Players starting at Base may teleport anywhere on the board for their movement, but cannot act that turn.</p>
             </div>
           </div>
