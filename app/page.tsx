@@ -30,6 +30,7 @@ export default function Page() {
         content: (
           <div className="space-y-2">
             <p><Num>5v5</Num> team-based board game.</p>
+            <p>The game lasts <Num>60 turns</Num>.</p>
             <p>Each team selects a <strong>Team Captain</strong>.</p>
             <ul className="list-disc pl-6 space-y-1">
               <li>Declares end of strategy phase.</li>
@@ -41,7 +42,12 @@ export default function Page() {
       {
         id: "win-condition",
         title: "Win Condition",
-        content: <p>A team wins by capturing the 🍁 Tree and returning it to their Base.</p>,
+        content: (
+          <div className="space-y-2">
+            <p>A team wins by capturing the 🍁 Tree and returning it to their Base.</p>
+            <p>If no team has captured the 🍁 Tree by <Num>Turn 60</Num>, the team with the furthest 🍁 Tree wins.</p>
+          </div>
+        ),
       },
       {
         id: "roles",
