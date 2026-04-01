@@ -30,10 +30,10 @@ export default function Page() {
         content: (
           <div className="space-y-2">
             <p><Num>5v5</Num> team-based board game.</p>
-            <p>The game lasts <Num>60 turns</Num>.</p>
+            <p>The game lasts a maximum of <Num>60 turns</Num>.</p>
             <p>Each team selects a <strong>Team Captain</strong>.</p>
             <ul className="list-disc pl-6 space-y-1">
-              <li>Declares end of strategy phase.</li>
+              <li>Ensures all team actions have been addressed.</li>
               <li>Announces Command Skill usage.</li>
             </ul>
           </div>
