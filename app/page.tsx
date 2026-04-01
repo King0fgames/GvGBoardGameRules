@@ -43,23 +43,25 @@ export default function Page() {
             <p><Num>5v5</Num> team-based board game.</p>
             <p>The game lasts a maximum of <Num>60 turns</Num>.</p>
             <p className="space-y-3">
-              The game is built in the <strong>ImmortalJade</strong> guild base. GM UID is <strong>1044872392</strong>.
-              <span className="mt-2 flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  onClick={() => copyToClipboard("ImmortalJade", "Guild name")}
-                  className="rounded-full bg-zinc-800 px-3 py-1 text-xs font-semibold text-zinc-200 transition hover:bg-zinc-700"
-                >
-                  Copy guild name
-                </button>
-                <button
-                  type="button"
-                  onClick={() => copyToClipboard("1044872392", "GM UID")}
-                  className="rounded-full bg-zinc-800 px-3 py-1 text-xs font-semibold text-zinc-200 transition hover:bg-zinc-700"
-                >
-                  Copy GM UID
-                </button>
-              </span>
+              The game is built in the <strong>ImmortalJade</strong> guild base
+              <button
+                type="button"
+                onClick={() => copyToClipboard("ImmortalJade", "Guild name")}
+                aria-label="Copy guild name"
+                className="ml-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-zinc-800 text-sm text-zinc-200 transition hover:bg-zinc-700"
+              >
+                📋
+              </button>
+              . GM UID is <strong>1044872392</strong>
+              <button
+                type="button"
+                onClick={() => copyToClipboard("1044872392", "GM UID")}
+                aria-label="Copy GM UID"
+                className="ml-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-zinc-800 text-sm text-zinc-200 transition hover:bg-zinc-700"
+              >
+                📋
+              </button>
+              .
             </p>
             {copyMessage && <p className="text-sm text-emerald-300">{copyMessage}</p>}
             <p>Each team selects a <strong>Team Captain</strong>.</p>
