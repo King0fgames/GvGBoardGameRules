@@ -43,8 +43,8 @@ export default function Page() {
             <p><Num>5v5</Num> team-based board game.</p>
             <p>The game lasts a maximum of <Num>60 turns</Num>.</p>
             <p className="space-y-3">
-              The game is built in
-              <span className="inline-flex items-center gap-1">
+              The game is built in 
+              <span className="inline-flex items-center gap-1 mr-1">
                 <strong>ImmortalJade</strong>
                 <button
                   type="button"
@@ -58,8 +58,8 @@ export default function Page() {
                   </svg>
                 </button>
               </span>
-              guild base. GM UID is
-              <span className="inline-flex items-center gap-1">
+              guild base. GM UID is 
+              <span className="inline-flex items-center gap-1 mr-1">
                 <strong>1044872392</strong>
                 <button
                   type="button"
