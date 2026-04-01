@@ -31,7 +31,28 @@ export default function Page() {
           <div className="space-y-2">
             <p><Num>5v5</Num> team-based board game.</p>
             <p>The game lasts a maximum of <Num>60 turns</Num>.</p>
+            <p className="space-y-3">
+              The game is built in the <strong>ImmortalJade</strong> guild base. GM UID is <strong>1044872392</strong>.
+              <span className="mt-2 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() => copyToClipboard("ImmortalJade", "Guild name")}
+                  className="rounded-full bg-zinc-800 px-3 py-1 text-xs font-semibold text-zinc-200 transition hover:bg-zinc-700"
+                >
+                  Copy guild name
+                </button>
+                <button
+                  type="button"
+                  onClick={() => copyToClipboard("1044872392", "GM UID")}
+                  className="rounded-full bg-zinc-800 px-3 py-1 text-xs font-semibold text-zinc-200 transition hover:bg-zinc-700"
+                >
+                  Copy GM UID
+                </button>
+              </span>
+            </p>
+            {copyMessage && <p className="text-sm text-emerald-300">{copyMessage}</p>}
             <p>Each team selects a <strong>Team Captain</strong>.</p>
+
             <ul className="list-disc pl-6 space-y-1">
               <li>Ensures all team actions have been addressed.</li>
               <li>Announces Command Skill usage.</li>
@@ -309,6 +330,17 @@ export default function Page() {
 
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
   const [highlightedSection, setHighlightedSection] = useState<string | null>(null);
+  const [copyMessage, setCopyMessage] = useState<string>("");
+
+  const copyToClipboard = async (value: string, label: string) => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopyMessage(`${label} copied`);
+    } catch {
+      setCopyMessage(`Failed to copy ${label}`);
+    }
+    window.setTimeout(() => setCopyMessage(""), 1800);
+  };
 
   useEffect(() => {
     setOpenSections(Object.fromEntries(sections.map((section) => [section.id, true])));
