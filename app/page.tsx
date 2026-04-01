@@ -477,8 +477,8 @@ export default function Page() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Join Party-Crashers Discord"
-              className={`pointer-events-auto inline-flex h-[46px] items-center overflow-hidden rounded-2xl border border-violet-900/80 bg-zinc-900/60 text-sm font-semibold text-zinc-100 shadow-2xl shadow-black/30 backdrop-blur-md transition-all duration-300 hover:border-violet-700 hover:bg-violet-950/40 hover:text-white ${
-                mobileDiscordCollapsed ? "w-[46px] justify-center px-0" : "gap-2 px-4"
+              className={`pointer-events-auto inline-grid h-[46px] items-center overflow-hidden rounded-2xl border border-violet-900/80 bg-zinc-900/60 text-sm font-semibold text-zinc-100 shadow-2xl shadow-black/30 backdrop-blur-md transition-[grid-template-columns,padding] duration-300 hover:border-violet-700 hover:bg-violet-950/40 hover:text-white ${
+                mobileDiscordCollapsed ? "grid-cols-[16px_0fr] px-[15px]" : "grid-cols-[16px_1fr] gap-2 px-4"
               }`}
             >
               <svg
@@ -490,8 +490,8 @@ export default function Page() {
                 <path d="M20.317 4.369A19.791 19.791 0 0 0 15.885 3c-.191.328-.403.77-.554 1.116a18.27 18.27 0 0 0-5.657 0A11.413 11.413 0 0 0 9.12 3a19.736 19.736 0 0 0-4.433 1.369C1.884 8.58 1.128 12.687 1.5 16.737a19.923 19.923 0 0 0 5.432 2.76c.438-.583.828-1.204 1.164-1.858a12.96 12.96 0 0 1-1.83-.879c.154-.113.305-.231.451-.352 3.53 1.658 7.36 1.658 10.848 0 .147.121.298.239.451.352-.585.34-1.196.634-1.832.88.337.653.726 1.273 1.165 1.857a19.884 19.884 0 0 0 5.433-2.76c.437-4.695-.746-8.764-3.465-12.368ZM9.049 14.626c-1.06 0-1.932-.973-1.932-2.169 0-1.195.85-2.168 1.932-2.168 1.09 0 1.95.982 1.931 2.168 0 1.196-.85 2.169-1.931 2.169Zm5.902 0c-1.06 0-1.931-.973-1.931-2.169 0-1.195.85-2.168 1.931-2.168 1.09 0 1.95.982 1.932 2.168 0 1.196-.842 2.169-1.932 2.169Z" />
               </svg>
               <span
-                className={`whitespace-nowrap transition-all duration-300 ${
-                  mobileDiscordCollapsed ? "max-w-0 opacity-0" : "max-w-40 opacity-100"
+                className={`min-w-0 overflow-hidden whitespace-nowrap transition-[opacity,transform] duration-200 ${
+                  mobileDiscordCollapsed ? "translate-x-1 opacity-0" : "translate-x-0 opacity-100"
                 }`}
               >
                 Party-Crashers
