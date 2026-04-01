@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const Red = ({ children }: { children: React.ReactNode }) => (
   <span className="rounded bg-red-500/10 px-1.5 py-0.5 text-red-300">{children}</span>
@@ -22,8 +22,19 @@ type Section = {
 
 export default function Page() {
   const mobileMenuRef = useRef<HTMLDetailsElement | null>(null);
-  const sections: Section[] = useMemo(
-    () => [
+  const [copyMessage, setCopyMessage] = useState<string>("");
+
+  const copyToClipboard = async (value: string, label: string) => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopyMessage(`${label} copied`);
+    } catch {
+      setCopyMessage(`Failed to copy ${label}`);
+    }
+    window.setTimeout(() => setCopyMessage(""), 1800);
+  };
+
+  const sections: Section[] = [
       {
         id: "overview",
         title: "Game Overview",
@@ -324,23 +335,10 @@ export default function Page() {
           </div>
         ),
       },
-    ],
-    []
-  );
+    ];
 
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
   const [highlightedSection, setHighlightedSection] = useState<string | null>(null);
-  const [copyMessage, setCopyMessage] = useState<string>("");
-
-  const copyToClipboard = async (value: string, label: string) => {
-    try {
-      await navigator.clipboard.writeText(value);
-      setCopyMessage(`${label} copied`);
-    } catch {
-      setCopyMessage(`Failed to copy ${label}`);
-    }
-    window.setTimeout(() => setCopyMessage(""), 1800);
-  };
 
   useEffect(() => {
     setOpenSections(Object.fromEntries(sections.map((section) => [section.id, true])));
