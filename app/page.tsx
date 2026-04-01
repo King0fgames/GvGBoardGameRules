@@ -457,14 +457,14 @@ export default function Page() {
               onToggle={(event) => setMobileMenuOpen((event.currentTarget as HTMLDetailsElement).open)}
             >
               <summary
-                className={`cursor-pointer list-none font-semibold shadow-2xl backdrop-blur-xl transition-[grid-template-columns,padding,background-color,border-color,box-shadow,border-radius] duration-300 ${
+                className={`relative z-30 cursor-pointer list-none font-semibold shadow-2xl backdrop-blur-xl transition-[grid-template-columns,padding,background-color,border-color,box-shadow,border-radius] duration-300 ${
                   mobileMenuOpen
-                    ? "rounded-t-2xl rounded-b-[0.55rem] border border-zinc-700 border-b-transparent bg-zinc-900/88 shadow-black/30"
+                    ? "rounded-2xl border border-zinc-700 bg-zinc-900/88 shadow-black/30"
                     : "rounded-2xl border border-white/10 bg-zinc-950/25 shadow-black/20"
                 } ${
                   mobileSectionsCollapsed && !mobileMenuOpen
                     ? "grid grid-cols-[14px_0fr] px-[16px] py-2.5"
-                    : "grid grid-cols-[14px_1fr] gap-2 px-4 py-2.5"
+                    : `grid grid-cols-[14px_1fr] gap-2 px-4 ${mobileMenuOpen ? "pt-2.5 pb-4" : "py-2.5"}`
                 }`}
               >
                 <span aria-hidden="true" className="self-center leading-none">☰</span>
@@ -477,9 +477,9 @@ export default function Page() {
                 </span>
               </summary>
               <div
-                className={`absolute left-0 z-20 top-[calc(100%-1px)] w-[min(18rem,calc(100vw-1rem))] max-h-[calc(100dvh-5rem)] overflow-y-auto p-1.5 pt-3 shadow-xl backdrop-blur-xl transition-[background-color,border-color,box-shadow,border-radius] duration-300 ${
+                className={`absolute left-0 z-20 top-[calc(100%-10px)] w-[min(18rem,calc(100vw-1rem))] max-h-[calc(100dvh-5rem)] overflow-y-auto p-1.5 pt-5 shadow-xl backdrop-blur-xl transition-[background-color,border-color,box-shadow,border-radius,top] duration-300 ${
                   mobileMenuOpen
-                    ? "rounded-t-[0.55rem] rounded-b-[1.35rem] border border-zinc-700 bg-zinc-900/94 shadow-black/30"
+                    ? "rounded-b-[1.35rem] rounded-t-[1rem] border border-zinc-700 border-t-0 bg-zinc-900/94 shadow-black/30"
                     : "rounded-[1.35rem] border border-white/10 bg-zinc-950/70 shadow-black/25"
                 }`}
               >
