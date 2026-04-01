@@ -43,27 +43,36 @@ export default function Page() {
             <p><Num>5v5</Num> team-based board game.</p>
             <p>The game lasts a maximum of <Num>60 turns</Num>.</p>
             <p className="space-y-3">
-              The game is built in the <strong>ImmortalJade</strong><button
-                type="button"
-                onClick={() => copyToClipboard("ImmortalJade", "Guild name")}
-                aria-label="Copy guild name"
-                className="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-zinc-800 text-zinc-200 transition hover:bg-zinc-700 align-middle p-0"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" className="inline-block h-3 w-3" aria-hidden="true" fill="currentColor">
-                  <rect x="6" y="4" width="9" height="9" rx="1.5" />
-                  <rect x="4" y="6" width="9" height="9" rx="1.5" />
-                </svg>
-              </button> guild base. GM UID is <strong>1044872392</strong><button
-                type="button"
-                onClick={() => copyToClipboard("1044872392", "GM UID")}
-                aria-label="Copy GM UID"
-                className="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-zinc-800 text-zinc-200 transition hover:bg-zinc-700 align-middle p-0"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" className="inline-block h-3 w-3" aria-hidden="true" fill="currentColor">
-                  <rect x="6" y="4" width="9" height="9" rx="1.5" />
-                  <rect x="4" y="6" width="9" height="9" rx="1.5" />
-                </svg>
-              </button>.
+              The game is built in
+              <span className="inline-flex items-center gap-1">
+                <strong>ImmortalJade</strong>
+                <button
+                  type="button"
+                  onClick={() => copyToClipboard("ImmortalJade", "Guild name")}
+                  aria-label="Copy guild name"
+                  className="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-zinc-800 text-zinc-200 transition hover:bg-zinc-700 p-0"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" className="h-3 w-3" aria-hidden="true" fill="currentColor">
+                    <rect x="6" y="4" width="9" height="9" rx="1.5" />
+                    <rect x="4" y="6" width="9" height="9" rx="1.5" />
+                  </svg>
+                </button>
+              </span>
+              guild base. GM UID is
+              <span className="inline-flex items-center gap-1">
+                <strong>1044872392</strong>
+                <button
+                  type="button"
+                  onClick={() => copyToClipboard("1044872392", "GM UID")}
+                  aria-label="Copy GM UID"
+                  className="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-zinc-800 text-zinc-200 transition hover:bg-zinc-700 p-0"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" className="h-3 w-3" aria-hidden="true" fill="currentColor">
+                    <rect x="6" y="4" width="9" height="9" rx="1.5" />
+                    <rect x="4" y="6" width="9" height="9" rx="1.5" />
+                  </svg>
+                </button>
+              </span>.
             </p>
             {copyMessage && <p className="text-sm text-emerald-300">{copyMessage}</p>}
             <p>Each team selects a <strong>Team Captain</strong>.</p>
