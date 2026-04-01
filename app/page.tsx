@@ -363,6 +363,7 @@ export default function Page() {
   const mobileMenuRef = useRef<HTMLDetailsElement | null>(null);
   const [copyMessage, setCopyMessage] = useState<string>("");
   const [mobileDiscordCollapsed, setMobileDiscordCollapsed] = useState(false);
+  const [mobileSectionsCollapsed, setMobileSectionsCollapsed] = useState(false);
 
   const copyToClipboard = async (value: string, label: string) => {
     try {
@@ -376,7 +377,9 @@ export default function Page() {
 
   useEffect(() => {
     const onScroll = () => {
-      setMobileDiscordCollapsed(window.scrollY > 24);
+      const collapsed = window.scrollY > 24;
+      setMobileDiscordCollapsed(collapsed);
+      setMobileSectionsCollapsed(collapsed);
     };
 
     onScroll();
@@ -448,7 +451,20 @@ export default function Page() {
         <main className="flex-1 p-3 sm:p-5 lg:p-6">
           <div className="pointer-events-none fixed left-3 top-3 z-30 lg:hidden">
             <details ref={mobileMenuRef} className="pointer-events-auto relative">
-              <summary className="cursor-pointer list-none rounded-2xl border border-zinc-800 bg-zinc-900/45 px-4 py-2.5 font-semibold shadow-2xl shadow-black/30 backdrop-blur-md">☰ Sections</summary>
+              <summary
+                className={`cursor-pointer list-none rounded-2xl border border-zinc-800 bg-zinc-900/45 font-semibold shadow-2xl shadow-black/30 backdrop-blur-md transition-[grid-template-columns,padding] duration-300 ${
+                  mobileSectionsCollapsed ? "grid grid-cols-[14px_0fr] px-[16px] py-2.5" : "grid grid-cols-[14px_1fr] gap-2 px-4 py-2.5"
+                }`}
+              >
+                <span aria-hidden="true" className="leading-none">☰</span>
+                <span
+                  className={`min-w-0 overflow-hidden whitespace-nowrap transition-[opacity,transform] duration-200 ${
+                    mobileSectionsCollapsed ? "translate-x-1 opacity-0" : "translate-x-0 opacity-100"
+                  }`}
+                >
+                  Sections
+                </span>
+              </summary>
               <div className="absolute left-0 z-20 mt-2 w-[min(18rem,calc(100vw-1rem))] max-h-[calc(100dvh-5rem)] overflow-y-auto rounded-2xl border border-zinc-800 bg-zinc-900 p-1.5 shadow-xl shadow-black/30">
                 <div className="space-y-1.5">
                   {sections.map((s, i) => (
