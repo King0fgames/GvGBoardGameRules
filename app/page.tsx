@@ -47,7 +47,7 @@ export default function Page() {
                 type="button"
                 onClick={() => copyToClipboard("ImmortalJade", "Guild name")}
                 aria-label="Copy guild name"
-                className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-sm bg-zinc-800 text-zinc-200 transition hover:bg-zinc-700 align-middle leading-none"
+                className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-sm bg-zinc-800 text-zinc-200 transition hover:bg-zinc-700 align-middle leading-none p-0 relative top-px"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" className="inline-block h-3.5 w-3.5" aria-hidden="true" fill="currentColor">
                   <rect x="6" y="4" width="9" height="9" rx="1.5" />
@@ -57,7 +57,7 @@ export default function Page() {
                 type="button"
                 onClick={() => copyToClipboard("1044872392", "GM UID")}
                 aria-label="Copy GM UID"
-                className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-sm bg-zinc-800 text-zinc-200 transition hover:bg-zinc-700 align-middle leading-none"
+                className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-sm bg-zinc-800 text-zinc-200 transition hover:bg-zinc-700 align-middle leading-none p-0 relative top-px"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" className="inline-block h-3.5 w-3.5" aria-hidden="true" fill="currentColor">
                   <rect x="6" y="4" width="9" height="9" rx="1.5" />
