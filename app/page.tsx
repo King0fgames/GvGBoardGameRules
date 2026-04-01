@@ -453,21 +453,27 @@ export default function Page() {
           <div className="pointer-events-none fixed left-3 top-3 z-30 lg:hidden">
             <details
               ref={mobileMenuRef}
-              className="pointer-events-auto relative"
+              className={`pointer-events-auto overflow-hidden shadow-2xl backdrop-blur-xl transition-[background-color,border-color,box-shadow,border-radius] duration-300 ${
+                mobileMenuOpen
+                  ? "rounded-[1.35rem] border border-zinc-700 bg-zinc-900/94 shadow-black/30"
+                  : "relative rounded-2xl"
+              }`}
               onToggle={(event) => setMobileMenuOpen((event.currentTarget as HTMLDetailsElement).open)}
             >
               <summary
-                className={`relative z-30 cursor-pointer list-none font-semibold shadow-2xl backdrop-blur-xl transition-[grid-template-columns,padding,background-color,border-color,box-shadow,border-radius] duration-300 ${
+                className={`cursor-pointer list-none font-semibold backdrop-blur-xl transition-[grid-template-columns,padding,background-color,border-color,box-shadow,border-radius] duration-300 ${
                   mobileMenuOpen
-                    ? "rounded-2xl border border-zinc-700 bg-zinc-900/88 shadow-black/30"
-                    : "rounded-2xl border border-white/10 bg-zinc-950/25 shadow-black/20"
+                    ? "grid grid-cols-[14px_1fr] gap-2 border-b border-zinc-700/90 px-4 py-2.5"
+                    : "rounded-2xl border border-white/10 bg-zinc-950/15 shadow-2xl shadow-black/20"
                 } ${
                   mobileSectionsCollapsed && !mobileMenuOpen
                     ? "grid grid-cols-[14px_0fr] px-[16px] py-2.5"
-                    : `grid grid-cols-[14px_1fr] gap-2 px-4 ${mobileMenuOpen ? "pt-2.5 pb-4" : "py-2.5"}`
+                    : !mobileMenuOpen
+                      ? "grid grid-cols-[14px_1fr] gap-2 px-4 py-2.5"
+                      : ""
                 }`}
               >
-                <span aria-hidden="true" className="self-center leading-none">☰</span>
+                <span aria-hidden="true" className="block self-center leading-none">☰</span>
                 <span
                   className={`min-w-0 overflow-hidden whitespace-nowrap transition-[opacity,transform] duration-200 ${
                     mobileSectionsCollapsed && !mobileMenuOpen ? "translate-x-1 opacity-0" : "translate-x-0 opacity-100"
@@ -477,10 +483,8 @@ export default function Page() {
                 </span>
               </summary>
               <div
-                className={`absolute left-0 z-20 top-[calc(100%-10px)] w-[min(18rem,calc(100vw-1rem))] max-h-[calc(100dvh-5rem)] overflow-y-auto p-1.5 pt-5 shadow-xl backdrop-blur-xl transition-[background-color,border-color,box-shadow,border-radius,top] duration-300 ${
-                  mobileMenuOpen
-                    ? "rounded-b-[1.35rem] rounded-t-[1rem] border border-zinc-700 border-t-0 bg-zinc-900/94 shadow-black/30"
-                    : "rounded-[1.35rem] border border-white/10 bg-zinc-950/70 shadow-black/25"
+                className={`w-[min(18rem,calc(100vw-1rem))] max-h-[calc(100dvh-5rem)] overflow-y-auto p-1.5 pt-2 ${
+                  mobileMenuOpen ? "" : "hidden"
                 }`}
               >
                 <div className="space-y-1.5">
@@ -513,21 +517,21 @@ export default function Page() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Join Party-Crashers Discord"
-              className={`pointer-events-auto inline-grid h-[46px] items-center overflow-hidden rounded-2xl border border-violet-300/20 bg-violet-950/20 text-sm font-semibold text-zinc-100 shadow-2xl shadow-black/20 backdrop-blur-xl transition-[grid-template-columns,padding] duration-300 hover:border-violet-200/35 hover:bg-violet-950/28 hover:text-white ${
-                mobileDiscordCollapsed ? "grid-cols-[16px_0fr] px-[15px]" : "grid-cols-[16px_1fr] gap-2 px-4"
+              className={`pointer-events-auto inline-grid h-[46px] items-center overflow-hidden rounded-2xl border border-violet-300/20 bg-violet-950/15 text-sm font-semibold text-zinc-100 shadow-2xl shadow-black/20 backdrop-blur-xl transition-[grid-template-columns,padding] duration-300 hover:border-violet-200/35 hover:bg-violet-950/28 hover:text-white ${
+                mobileDiscordCollapsed || mobileMenuOpen ? "grid-cols-[16px_0fr] px-[15px]" : "grid-cols-[16px_1fr] gap-2 px-4"
               }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                className="h-4 w-4 shrink-0 fill-current"
+                className="h-4 w-4 shrink-0 self-center fill-current"
                 aria-hidden="true"
               >
                 <path d="M20.317 4.369A19.791 19.791 0 0 0 15.885 3c-.191.328-.403.77-.554 1.116a18.27 18.27 0 0 0-5.657 0A11.413 11.413 0 0 0 9.12 3a19.736 19.736 0 0 0-4.433 1.369C1.884 8.58 1.128 12.687 1.5 16.737a19.923 19.923 0 0 0 5.432 2.76c.438-.583.828-1.204 1.164-1.858a12.96 12.96 0 0 1-1.83-.879c.154-.113.305-.231.451-.352 3.53 1.658 7.36 1.658 10.848 0 .147.121.298.239.451.352-.585.34-1.196.634-1.832.88.337.653.726 1.273 1.165 1.857a19.884 19.884 0 0 0 5.433-2.76c.437-4.695-.746-8.764-3.465-12.368ZM9.049 14.626c-1.06 0-1.932-.973-1.932-2.169 0-1.195.85-2.168 1.932-2.168 1.09 0 1.95.982 1.931 2.168 0 1.196-.85 2.169-1.931 2.169Zm5.902 0c-1.06 0-1.931-.973-1.931-2.169 0-1.195.85-2.168 1.931-2.168 1.09 0 1.95.982 1.932 2.168 0 1.196-.842 2.169-1.932 2.169Z" />
               </svg>
               <span
                 className={`min-w-0 overflow-hidden whitespace-nowrap transition-[opacity,transform] duration-200 ${
-                  mobileDiscordCollapsed ? "translate-x-1 opacity-0" : "translate-x-0 opacity-100"
+                  mobileDiscordCollapsed || mobileMenuOpen ? "translate-x-1 opacity-0" : "translate-x-0 opacity-100"
                 }`}
               >
                 Party-Crashers
