@@ -459,6 +459,17 @@ export default function Page() {
             </details>
           </div>
 
+          <div className="pointer-events-none fixed right-3 top-3 z-30 lg:hidden">
+            <a
+              href="https://discord.gg/bGBfpTEXtN"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pointer-events-auto inline-flex items-center gap-2 rounded-2xl border border-zinc-800 bg-zinc-900/60 px-4 py-2.5 text-sm font-semibold text-zinc-100 shadow-2xl shadow-black/30 backdrop-blur-md transition hover:border-indigo-400/60 hover:bg-indigo-500/20 hover:text-white"
+            >
+              <span aria-hidden="true">Discord</span>
+            </a>
+          </div>
+
           <div className="mb-6 pt-14 lg:hidden">
             <p className="text-sm uppercase tracking-[0.25em] text-zinc-500">Rulebook</p>
             <h1 className="mt-1 text-3xl font-bold">WWM GvG Board Game</h1>
