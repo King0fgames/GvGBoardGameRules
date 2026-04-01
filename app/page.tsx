@@ -345,19 +345,29 @@ export default function Page() {
                 <div key={s.id}>
                   {i !== 0 && <div className="mx-2 my-1 h-px bg-zinc-800/60" />}
                   <button
-                  key={s.id}
-                  type="button"
-                  onClick={() => {
+                    type="button"
+                    onClick={() => {
                       expandAndJump(s.id);
                       if (mobileMenuRef.current) mobileMenuRef.current.open = false;
                     }}
-                  className="block w-full rounded-xl px-3 py-2 text-left text-sm text-zinc-300 transition hover:bg-zinc-900 hover:text-white"
-                >
-                  {s.title}
+                    className="block w-full rounded-xl px-3 py-2 text-left text-sm text-zinc-300 transition hover:bg-zinc-900 hover:text-white"
+                  >
+                    {s.title}
                   </button>
                 </div>
               ))}
             </nav>
+            <div className="mt-6 rounded-3xl border border-zinc-800 bg-zinc-900/80 p-4 text-center">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">Party-Crashers Discord</p>
+              <a
+                href="https://discord.gg/bGBfpTEXtN"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center rounded-2xl bg-indigo-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-indigo-400"
+              >
+                Join Discord
+              </a>
+            </div>
           </div>
         </aside>
 
