@@ -48,19 +48,19 @@ export default function Page() {
                 type="button"
                 onClick={() => copyToClipboard("ImmortalJade", "Guild name")}
                 aria-label="Copy guild name"
-                className="ml-2 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-zinc-800 text-sm text-zinc-200 transition hover:bg-zinc-700"
+                className="ml-2 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-sm bg-zinc-800 text-zinc-200 transition hover:bg-zinc-700 align-middle"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" className="h-4 w-4" aria-hidden="true" fill="currentColor">
                   <rect x="6" y="4" width="9" height="9" rx="1.5" />
                   <rect x="4" y="6" width="9" height="9" rx="1.5" />
                 </svg>
               </button>
-              guild base. GM UID is <strong>1044872392</strong>
+               guild base. GM UID is <strong>1044872392</strong>
               <button
                 type="button"
                 onClick={() => copyToClipboard("1044872392", "GM UID")}
                 aria-label="Copy GM UID"
-                className="ml-2 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-zinc-800 text-sm text-zinc-200 transition hover:bg-zinc-700"
+                className="ml-2 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-sm bg-zinc-800 text-zinc-200 transition hover:bg-zinc-700 align-middle"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" className="h-4 w-4" aria-hidden="true" fill="currentColor">
                   <rect x="6" y="4" width="9" height="9" rx="1.5" />
