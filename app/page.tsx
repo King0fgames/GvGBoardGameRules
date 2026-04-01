@@ -464,9 +464,17 @@ export default function Page() {
               href="https://discord.gg/bGBfpTEXtN"
               target="_blank"
               rel="noopener noreferrer"
-              className="pointer-events-auto inline-flex items-center gap-2 rounded-2xl border border-zinc-800 bg-zinc-900/60 px-4 py-2.5 text-sm font-semibold text-zinc-100 shadow-2xl shadow-black/30 backdrop-blur-md transition hover:border-indigo-400/60 hover:bg-indigo-500/20 hover:text-white"
+              className="pointer-events-auto inline-flex h-[46px] items-center gap-2 rounded-2xl border border-violet-900/80 bg-zinc-900/60 px-4 text-sm font-semibold text-zinc-100 shadow-2xl shadow-black/30 backdrop-blur-md transition hover:border-violet-700 hover:bg-violet-950/40 hover:text-white"
             >
-              <span aria-hidden="true">Discord</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                className="h-4 w-4 shrink-0 fill-current"
+                aria-hidden="true"
+              >
+                <path d="M20.317 4.369A19.791 19.791 0 0 0 15.885 3c-.191.328-.403.77-.554 1.116a18.27 18.27 0 0 0-5.657 0A11.413 11.413 0 0 0 9.12 3a19.736 19.736 0 0 0-4.433 1.369C1.884 8.58 1.128 12.687 1.5 16.737a19.923 19.923 0 0 0 5.432 2.76c.438-.583.828-1.204 1.164-1.858a12.96 12.96 0 0 1-1.83-.879c.154-.113.305-.231.451-.352 3.53 1.658 7.36 1.658 10.848 0 .147.121.298.239.451.352-.585.34-1.196.634-1.832.88.337.653.726 1.273 1.165 1.857a19.884 19.884 0 0 0 5.433-2.76c.437-4.695-.746-8.764-3.465-12.368ZM9.049 14.626c-1.06 0-1.932-.973-1.932-2.169 0-1.195.85-2.168 1.932-2.168 1.09 0 1.95.982 1.931 2.168 0 1.196-.85 2.169-1.931 2.169Zm5.902 0c-1.06 0-1.931-.973-1.931-2.169 0-1.195.85-2.168 1.931-2.168 1.09 0 1.95.982 1.932 2.168 0 1.196-.842 2.169-1.932 2.169Z" />
+              </svg>
+              <span>Party-Crashers</span>
             </a>
           </div>
 
