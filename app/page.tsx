@@ -82,12 +82,6 @@ const sections: Section[] = [
           />.
         </p>
         {copyMessage && <p className="text-sm font-medium text-emerald-300">{copyMessage}</p>}
-        <p>Each team selects a <strong>Team Captain</strong>.</p>
-
-        <ul className="list-disc pl-6 space-y-1">
-          <li>Ensures all team actions have been addressed.</li>
-          <li>Announces Command Skill usage.</li>
-        </ul>
       </div>
     ),
   },
@@ -146,10 +140,15 @@ const sections: Section[] = [
     id: "setup",
     title: "Setup",
     content: () => (
-      <ul className="list-disc pl-6 space-y-1">
-        <li>Teams start at their respective Base.</li>
-        <li>Players may exit from any of the <Num>3</Num> stair platforms.</li>
-      </ul>
+      <div className="space-y-2">
+        <p>Each team selects a <strong>Team Captain</strong>.</p>
+        <ul className="list-disc pl-6 space-y-1">
+          <li>Ensures all team actions have been addressed.</li>
+          <li>Announces Command Skill usage.</li>
+          <li>Teams start at their respective Base.</li>
+          <li>Players may exit from any of the <Num>3</Num> stair platforms.</li>
+        </ul>
+      </div>
     ),
   },
   {
